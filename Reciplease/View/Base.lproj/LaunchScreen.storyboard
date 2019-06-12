@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="livre-recettes-cuisine-bio-facile" translatesAutoresizingMaskIntoConstraints="NO" id="lWe-lb-9a4">
+                                <rect key="frame" x="-93" y="248" width="600" height="400"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reciplease" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9kx-Ma-RK8">
+                                <rect key="frame" x="153" y="408" width="162" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="9kx-Ma-RK8" secondAttribute="height" multiplier="27:7" id="CKk-Mu-agC"/>
+                                    <constraint firstAttribute="height" constant="42" id="Mhm-Rm-AO4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="38"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.21568627450980393" green="0.20000000000000001" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="9kx-Ma-RK8" secondAttribute="trailing" symbolic="YES" id="56t-K9-msr"/>
+                            <constraint firstItem="lWe-lb-9a4" firstAttribute="top" secondItem="9kx-Ma-RK8" secondAttribute="bottom" constant="-202" id="F7o-i6-IXb"/>
+                            <constraint firstItem="lWe-lb-9a4" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Kxd-6K-T3E"/>
+                            <constraint firstItem="9kx-Ma-RK8" firstAttribute="leading" secondItem="lWe-lb-9a4" secondAttribute="trailing" constant="-354" id="e6S-3A-0tS"/>
+                            <constraint firstItem="lWe-lb-9a4" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="f3d-f5-ut6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52" y="374.6305418719212"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="livre-recettes-cuisine-bio-facile" width="600" height="400"/>
+    </resources>
+</document>

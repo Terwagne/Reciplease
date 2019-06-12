@@ -1,0 +1,637 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CD126CD422A2C21C006293AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD126CD322A2C21C006293AC /* AppDelegate.swift */; };
+		CD126CD922A2C21C006293AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD126CD722A2C21C006293AC /* Main.storyboard */; };
+		CD126CDC22A2C21C006293AC /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CD126CDA22A2C21C006293AC /* Reciplease.xcdatamodeld */; };
+		CD126CDE22A2C222006293AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD126CDD22A2C222006293AC /* Assets.xcassets */; };
+		CD126CE122A2C222006293AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD126CDF22A2C222006293AC /* LaunchScreen.storyboard */; };
+		CD126CEC22A2C222006293AC /* RecipleaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD126CEB22A2C222006293AC /* RecipleaseTests.swift */; };
+		CD4601FA22A57A5B00860A70 /* CustomRecipeViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD4601F922A57A5B00860A70 /* CustomRecipeViewCell.xib */; };
+		CD4601FC22A57BC500860A70 /* EdamamRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4601FB22A57BC500860A70 /* EdamamRecipes.swift */; };
+		CD46020022A580AE00860A70 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4601FF22A580AE00860A70 /* Constants.swift */; };
+		CD46020222A5816C00860A70 /* EdamamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46020122A5816C00860A70 /* EdamamService.swift */; };
+		CD46020822A5C34400860A70 /* EdamamSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46020722A5C34400860A70 /* EdamamSession.swift */; };
+		CD46020A22A5C36C00860A70 /* EdamanProtocole.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46020922A5C36C00860A70 /* EdamanProtocole.swift */; };
+		CD46020D22A66AEE00860A70 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46020C22A66AEE00860A70 /* UserDefault.swift */; };
+		CD46020F22A70F3A00860A70 /* CustomRecipeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46020E22A70F3A00860A70 /* CustomRecipeViewCell.swift */; };
+		CDD0612622A3FD6400D474C5 /* FavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD0612522A3FD6400D474C5 /* FavoriteTableViewController.swift */; };
+		CDD0612822A3FDC300D474C5 /* RecipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD0612722A3FDC300D474C5 /* RecipeTableViewController.swift */; };
+		CDD0612A22A3FE2600D474C5 /* RecipeSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD0612922A3FE2600D474C5 /* RecipeSearchViewController.swift */; };
+		D414990B4D832FAB4F821FFD /* Pods_Reciplease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DFF93CF9ABE9961D6997307 /* Pods_Reciplease.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CD126CE822A2C222006293AC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD126CC822A2C21C006293AC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CD126CCF22A2C21C006293AC;
+			remoteInfo = Reciplease;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1090D6FEE6388D4F03A6FED0 /* Pods-Reciplease.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reciplease.release.xcconfig"; path = "Target Support Files/Pods-Reciplease/Pods-Reciplease.release.xcconfig"; sourceTree = "<group>"; };
+		90D4993B24467E26FDD559B9 /* Pods-Reciplease.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reciplease.debug.xcconfig"; path = "Target Support Files/Pods-Reciplease/Pods-Reciplease.debug.xcconfig"; sourceTree = "<group>"; };
+		9DFF93CF9ABE9961D6997307 /* Pods_Reciplease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reciplease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD126CD022A2C21C006293AC /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD126CD322A2C21C006293AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CD126CD822A2C21C006293AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CD126CDB22A2C21C006293AC /* Reciplease.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Reciplease.xcdatamodel; sourceTree = "<group>"; };
+		CD126CDD22A2C222006293AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CD126CE022A2C222006293AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CD126CE222A2C222006293AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CD126CE722A2C222006293AC /* RecipleaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecipleaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD126CEB22A2C222006293AC /* RecipleaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseTests.swift; sourceTree = "<group>"; };
+		CD126CED22A2C222006293AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CD4601F922A57A5B00860A70 /* CustomRecipeViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomRecipeViewCell.xib; sourceTree = "<group>"; };
+		CD4601FB22A57BC500860A70 /* EdamamRecipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdamamRecipes.swift; sourceTree = "<group>"; };
+		CD4601FF22A580AE00860A70 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CD46020122A5816C00860A70 /* EdamamService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdamamService.swift; sourceTree = "<group>"; };
+		CD46020722A5C34400860A70 /* EdamamSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EdamamSession.swift; sourceTree = "<group>"; };
+		CD46020922A5C36C00860A70 /* EdamanProtocole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdamanProtocole.swift; sourceTree = "<group>"; };
+		CD46020C22A66AEE00860A70 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
+		CD46020E22A70F3A00860A70 /* CustomRecipeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRecipeViewCell.swift; sourceTree = "<group>"; };
+		CDD0612522A3FD6400D474C5 /* FavoriteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewController.swift; sourceTree = "<group>"; };
+		CDD0612722A3FDC300D474C5 /* RecipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewController.swift; sourceTree = "<group>"; };
+		CDD0612922A3FE2600D474C5 /* RecipeSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearchViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CD126CCD22A2C21C006293AC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D414990B4D832FAB4F821FFD /* Pods_Reciplease.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD126CE422A2C222006293AC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8E1F2A6E6D8A6846BC2AA012 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				90D4993B24467E26FDD559B9 /* Pods-Reciplease.debug.xcconfig */,
+				1090D6FEE6388D4F03A6FED0 /* Pods-Reciplease.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		CD126CC722A2C21C006293AC = {
+			isa = PBXGroup;
+			children = (
+				CD126CD222A2C21C006293AC /* Reciplease */,
+				CD126CEA22A2C222006293AC /* RecipleaseTests */,
+				CD126CD122A2C21C006293AC /* Products */,
+				8E1F2A6E6D8A6846BC2AA012 /* Pods */,
+				FE3537E5FC95B0DC0D909B7B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		CD126CD122A2C21C006293AC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CD126CD022A2C21C006293AC /* Reciplease.app */,
+				CD126CE722A2C222006293AC /* RecipleaseTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CD126CD222A2C21C006293AC /* Reciplease */ = {
+			isa = PBXGroup;
+			children = (
+				CD126CE222A2C222006293AC /* Info.plist */,
+				CD126CD322A2C21C006293AC /* AppDelegate.swift */,
+				CD46020B22A66ADA00860A70 /* Extension */,
+				CD4601F822A5793900860A70 /* Model */,
+				CD126CF722A2C370006293AC /* View */,
+				CD126CF822A2C378006293AC /* Controller */,
+				CD126CF922A2C381006293AC /* Supporting Files */,
+			);
+			path = Reciplease;
+			sourceTree = "<group>";
+		};
+		CD126CEA22A2C222006293AC /* RecipleaseTests */ = {
+			isa = PBXGroup;
+			children = (
+				CD126CEB22A2C222006293AC /* RecipleaseTests.swift */,
+				CD126CED22A2C222006293AC /* Info.plist */,
+			);
+			path = RecipleaseTests;
+			sourceTree = "<group>";
+		};
+		CD126CF722A2C370006293AC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CD126CD722A2C21C006293AC /* Main.storyboard */,
+				CD126CDF22A2C222006293AC /* LaunchScreen.storyboard */,
+				CD4601F922A57A5B00860A70 /* CustomRecipeViewCell.xib */,
+				CD46020E22A70F3A00860A70 /* CustomRecipeViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CD126CF822A2C378006293AC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CDD0612922A3FE2600D474C5 /* RecipeSearchViewController.swift */,
+				CDD0612522A3FD6400D474C5 /* FavoriteTableViewController.swift */,
+				CDD0612722A3FDC300D474C5 /* RecipeTableViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CD126CF922A2C381006293AC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CD126CDD22A2C222006293AC /* Assets.xcassets */,
+				CD126CDA22A2C21C006293AC /* Reciplease.xcdatamodeld */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CD4601F822A5793900860A70 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CD4601FB22A57BC500860A70 /* EdamamRecipes.swift */,
+				CD4601FF22A580AE00860A70 /* Constants.swift */,
+				CD46020122A5816C00860A70 /* EdamamService.swift */,
+				CD46020722A5C34400860A70 /* EdamamSession.swift */,
+				CD46020922A5C36C00860A70 /* EdamanProtocole.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CD46020B22A66ADA00860A70 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				CD46020C22A66AEE00860A70 /* UserDefault.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		FE3537E5FC95B0DC0D909B7B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9DFF93CF9ABE9961D6997307 /* Pods_Reciplease.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CD126CCF22A2C21C006293AC /* Reciplease */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CD126CF022A2C222006293AC /* Build configuration list for PBXNativeTarget "Reciplease" */;
+			buildPhases = (
+				6648FA719FD6B3CF589D08A8 /* [CP] Check Pods Manifest.lock */,
+				CD126CCC22A2C21C006293AC /* Sources */,
+				CD126CCD22A2C21C006293AC /* Frameworks */,
+				CD126CCE22A2C21C006293AC /* Resources */,
+				93B9F456057C1AA586719F05 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Reciplease;
+			productName = Reciplease;
+			productReference = CD126CD022A2C21C006293AC /* Reciplease.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CD126CE622A2C222006293AC /* RecipleaseTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CD126CF322A2C222006293AC /* Build configuration list for PBXNativeTarget "RecipleaseTests" */;
+			buildPhases = (
+				CD126CE322A2C222006293AC /* Sources */,
+				CD126CE422A2C222006293AC /* Frameworks */,
+				CD126CE522A2C222006293AC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CD126CE922A2C222006293AC /* PBXTargetDependency */,
+			);
+			name = RecipleaseTests;
+			productName = RecipleaseTests;
+			productReference = CD126CE722A2C222006293AC /* RecipleaseTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CD126CC822A2C21C006293AC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "ISABELLE Terwagne";
+				TargetAttributes = {
+					CD126CCF22A2C21C006293AC = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					CD126CE622A2C222006293AC = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = CD126CCF22A2C21C006293AC;
+					};
+				};
+			};
+			buildConfigurationList = CD126CCB22A2C21C006293AC /* Build configuration list for PBXProject "Reciplease" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CD126CC722A2C21C006293AC;
+			productRefGroup = CD126CD122A2C21C006293AC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CD126CCF22A2C21C006293AC /* Reciplease */,
+				CD126CE622A2C222006293AC /* RecipleaseTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CD126CCE22A2C21C006293AC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD126CE122A2C222006293AC /* LaunchScreen.storyboard in Resources */,
+				CD126CDE22A2C222006293AC /* Assets.xcassets in Resources */,
+				CD4601FA22A57A5B00860A70 /* CustomRecipeViewCell.xib in Resources */,
+				CD126CD922A2C21C006293AC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD126CE522A2C222006293AC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6648FA719FD6B3CF589D08A8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Reciplease-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		93B9F456057C1AA586719F05 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Reciplease/Pods-Reciplease-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Reciplease/Pods-Reciplease-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Reciplease/Pods-Reciplease-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CD126CCC22A2C21C006293AC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD46020022A580AE00860A70 /* Constants.swift in Sources */,
+				CD46020A22A5C36C00860A70 /* EdamanProtocole.swift in Sources */,
+				CD46020822A5C34400860A70 /* EdamamSession.swift in Sources */,
+				CD46020F22A70F3A00860A70 /* CustomRecipeViewCell.swift in Sources */,
+				CD46020D22A66AEE00860A70 /* UserDefault.swift in Sources */,
+				CD126CDC22A2C21C006293AC /* Reciplease.xcdatamodeld in Sources */,
+				CDD0612A22A3FE2600D474C5 /* RecipeSearchViewController.swift in Sources */,
+				CDD0612622A3FD6400D474C5 /* FavoriteTableViewController.swift in Sources */,
+				CD126CD422A2C21C006293AC /* AppDelegate.swift in Sources */,
+				CD4601FC22A57BC500860A70 /* EdamamRecipes.swift in Sources */,
+				CDD0612822A3FDC300D474C5 /* RecipeTableViewController.swift in Sources */,
+				CD46020222A5816C00860A70 /* EdamamService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD126CE322A2C222006293AC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD126CEC22A2C222006293AC /* RecipleaseTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CD126CE922A2C222006293AC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CD126CCF22A2C21C006293AC /* Reciplease */;
+			targetProxy = CD126CE822A2C222006293AC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CD126CD722A2C21C006293AC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CD126CD822A2C21C006293AC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		CD126CDF22A2C222006293AC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CD126CE022A2C222006293AC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CD126CEE22A2C222006293AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CD126CEF22A2C222006293AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CD126CF122A2C222006293AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 90D4993B24467E26FDD559B9 /* Pods-Reciplease.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SDAVVX8GL4;
+				INFOPLIST_FILE = "$(SRCROOT)/Reciplease/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.isabelle.Terwagne.Reciplease;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CD126CF222A2C222006293AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1090D6FEE6388D4F03A6FED0 /* Pods-Reciplease.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SDAVVX8GL4;
+				INFOPLIST_FILE = "$(SRCROOT)/Reciplease/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.isabelle.Terwagne.Reciplease;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CD126CF422A2C222006293AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SDAVVX8GL4;
+				INFOPLIST_FILE = RecipleaseTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.isabelle.Terwagne.RecipleaseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Reciplease.app/Reciplease";
+			};
+			name = Debug;
+		};
+		CD126CF522A2C222006293AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SDAVVX8GL4;
+				INFOPLIST_FILE = RecipleaseTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.isabelle.Terwagne.RecipleaseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Reciplease.app/Reciplease";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CD126CCB22A2C21C006293AC /* Build configuration list for PBXProject "Reciplease" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD126CEE22A2C222006293AC /* Debug */,
+				CD126CEF22A2C222006293AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CD126CF022A2C222006293AC /* Build configuration list for PBXNativeTarget "Reciplease" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD126CF122A2C222006293AC /* Debug */,
+				CD126CF222A2C222006293AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CD126CF322A2C222006293AC /* Build configuration list for PBXNativeTarget "RecipleaseTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD126CF422A2C222006293AC /* Debug */,
+				CD126CF522A2C222006293AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CD126CDA22A2C21C006293AC /* Reciplease.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CD126CDB22A2C21C006293AC /* Reciplease.xcdatamodel */,
+			);
+			currentVersion = CD126CDB22A2C21C006293AC /* Reciplease.xcdatamodel */;
+			path = Reciplease.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = CD126CC822A2C21C006293AC /* Project object */;
+}
