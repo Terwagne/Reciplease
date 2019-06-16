@@ -95,7 +95,7 @@ override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 }
 // MARK: - TableView DataSource
     
-extension RecipeSearchViewController: UITableViewDataSource {
+extension RecipeSearchViewController: UITableViewDataSource, UITableViewDelegate {
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return ingredients.count
         }
@@ -106,9 +106,14 @@ extension RecipeSearchViewController: UITableViewDataSource {
             cell.textLabel?.text = "- \(ingredient)"
             return cell
         }
-    }
     
-
+ func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    if editingStyle == .delete {
+        ingredients.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+        tableView.reloadData()}
+}
+}
 extension RecipeSearchViewController : UITextFieldDelegate {
     
     func dismissKeyboard() {
@@ -128,5 +133,5 @@ extension RecipeSearchViewController {
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         self.present(alertVC, animated: true, completion: nil)
 }
-
+    
 }

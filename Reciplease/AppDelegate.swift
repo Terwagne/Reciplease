@@ -88,6 +88,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
+    // Container
+    static var persistentContainer: NSPersistentContainer { 
+        guard let persistentContainer = UIApplication.shared.delegate as? AppDelegate else {return NSPersistentContainer()}
+        return persistentContainer.persistentContainer
+    }
+    //   Context
+    static var viewContext: NSManagedObjectContext {
+        return persistentContainer.viewContext
+    }
 }
 

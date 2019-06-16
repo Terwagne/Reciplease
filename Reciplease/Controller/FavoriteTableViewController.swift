@@ -7,84 +7,67 @@
 //
 
 import UIKit
+import CoreData
 
-class FavoriteTableViewController: UITableViewController {
+class FavoriteTableViewController: UIViewController {
 
-    override func viewDidLoad() {
+    
+    @IBOutlet var tableView: UITableView!
+    
+    
+    var favoritesRecipes = RecipeEntity.fetchAll()
+    var favoriteSelected: RecipeEntity?
+     var recipeDetail: Recipe?
+    
+ override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        tableView.register(UINib(nibName: "CustomRecipeViewCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
+    favoritesRecipes = RecipeEntity.fetchAll()
+    tableView.reloadData()
     }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+    override func viewWillAppear(_ animated: Bool) {
+        favoritesRecipes = RecipeEntity.fetchAll()
+        tableView.reloadData()
     }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+    
+    func updateFavoriteRecipeDetail(indexPath: IndexPath) {
+//       let favoriteRecipeDetail = favoritesRecipes
+        self.favoritesRecipes = [RecipeEntity.fetchAll()[indexPath.row]]
+        self.performSegue(withIdentifier: "recipeDetail", sender: self)
     }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    
+   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if let detailsVC = segue.destination as? RecipeDetailViewController {
+        detailsVC.recipeDetail = recipeDetail
     }
-    */
+}
+   }
+    extension FavoriteTableViewController: UITableViewDataSource {
+        func numberOfSections(in tableView: UITableView) -> Int {
+            return 1
+        }
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return favoritesRecipes.count
+        }
+        
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            guard indexPath.item < favoritesRecipes.count else { fatalError("Index out of rage")}
+            guard let customCell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as? CustomRecipeViewCell else { fatalError("Custom Cell can'nt be loaded")
+                
+            }
+            let resultRecipe = favoritesRecipes[indexPath.row]
+            customCell.favoritesRecipes = resultRecipe
+            return customCell
+            
+}
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
+}
+extension FavoriteTableViewController: UITableViewDelegate {
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
+func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard let indexPath = tableView.indexPathForSelectedRow else { return }
+    updateFavoriteRecipeDetail(indexPath: indexPath)
+}
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

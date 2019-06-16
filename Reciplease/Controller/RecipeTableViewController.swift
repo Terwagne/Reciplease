@@ -16,18 +16,35 @@ class RecipeTableViewController: UIViewController {
     let edamamService = EdamamService()
     var edamanRecipes:EdamamRecipes?
     var hits: [Hit]?
-    var recipes: [Recipe]?
+    var recipeDetail: Recipe?
+  
     
-       override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         recipesTableView.reloadData()
         recipesTableView.register(UINib(nibName: "CustomRecipeViewCell", bundle: nil), forCellReuseIdentifier: "CustomRecipeViewCell")
-    
         recipesTableView.reloadData()
     }
+    
+    
+    func updateRecipeDetail(indexPath: IndexPath) {
+    guard let recipeDetail = edamanRecipes?.hits[indexPath.row].recipe else {return}
+    self.recipeDetail = recipeDetail
+         self.performSegue(withIdentifier: "recipeDetail", sender: self)
+    }
+
+    //   navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: (Any)?) {
+        let segueName = "recipeDetail"
+        if segue.identifier == segueName {
+            let recipeDetailVC = segue.destination as! RecipeDetailViewController
+            recipeDetailVC.recipeDetail = recipeDetail
+    }
+}
 }
     // MARK: - Table view data source
-extension RecipeTableViewController: UITableViewDataSource {
+extension RecipeTableViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -42,11 +59,16 @@ extension RecipeTableViewController: UITableViewDataSource {
             return UITableViewCell()}
         guard let edamamRecipes = edamanRecipes else { return UITableViewCell() }
         cell.recipe = edamamRecipes.hits[indexPath.row]
+        
         return cell
+        }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+         guard let indexPath = tableView.indexPathForSelectedRow else { return }
+        updateRecipeDetail(indexPath: indexPath)
 
         
     }
-
-
+   
 
 }

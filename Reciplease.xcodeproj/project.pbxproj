@@ -24,6 +24,10 @@
 		CDD0612622A3FD6400D474C5 /* FavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD0612522A3FD6400D474C5 /* FavoriteTableViewController.swift */; };
 		CDD0612822A3FDC300D474C5 /* RecipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD0612722A3FDC300D474C5 /* RecipeTableViewController.swift */; };
 		CDD0612A22A3FE2600D474C5 /* RecipeSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD0612922A3FE2600D474C5 /* RecipeSearchViewController.swift */; };
+		CDD9E0B022B13B5400E5EECC /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD9E0AF22B13B5400E5EECC /* Time.swift */; };
+		CDD9E0B422B1464600E5EECC /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD9E0B322B1464600E5EECC /* RecipeDetailViewController.swift */; };
+		CDDED1AB22B3F8B500B23F88 /* RecipeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDED1AA22B3F8B500B23F88 /* RecipeEntity.swift */; };
+		CDDED1B022B58C2F00B23F88 /* IngredientLineEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDED1AF22B58C2F00B23F88 /* IngredientLineEntity.swift */; };
 		D414990B4D832FAB4F821FFD /* Pods_Reciplease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DFF93CF9ABE9961D6997307 /* Pods_Reciplease.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +66,10 @@
 		CDD0612522A3FD6400D474C5 /* FavoriteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewController.swift; sourceTree = "<group>"; };
 		CDD0612722A3FDC300D474C5 /* RecipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewController.swift; sourceTree = "<group>"; };
 		CDD0612922A3FE2600D474C5 /* RecipeSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearchViewController.swift; sourceTree = "<group>"; };
+		CDD9E0AF22B13B5400E5EECC /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
+		CDD9E0B322B1464600E5EECC /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController.swift; sourceTree = "<group>"; };
+		CDDED1AA22B3F8B500B23F88 /* RecipeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeEntity.swift; sourceTree = "<group>"; };
+		CDDED1AF22B58C2F00B23F88 /* IngredientLineEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientLineEntity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +160,7 @@
 				CDD0612922A3FE2600D474C5 /* RecipeSearchViewController.swift */,
 				CDD0612522A3FD6400D474C5 /* FavoriteTableViewController.swift */,
 				CDD0612722A3FDC300D474C5 /* RecipeTableViewController.swift */,
+				CDD9E0B322B1464600E5EECC /* RecipeDetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -160,7 +169,6 @@
 			isa = PBXGroup;
 			children = (
 				CD126CDD22A2C222006293AC /* Assets.xcassets */,
-				CD126CDA22A2C21C006293AC /* Reciplease.xcdatamodeld */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -168,11 +176,14 @@
 		CD4601F822A5793900860A70 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CD126CDA22A2C21C006293AC /* Reciplease.xcdatamodeld */,
 				CD4601FB22A57BC500860A70 /* EdamamRecipes.swift */,
 				CD4601FF22A580AE00860A70 /* Constants.swift */,
 				CD46020122A5816C00860A70 /* EdamamService.swift */,
 				CD46020722A5C34400860A70 /* EdamamSession.swift */,
 				CD46020922A5C36C00860A70 /* EdamanProtocole.swift */,
+				CDDED1AA22B3F8B500B23F88 /* RecipeEntity.swift */,
+				CDDED1AF22B58C2F00B23F88 /* IngredientLineEntity.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -181,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				CD46020C22A66AEE00860A70 /* UserDefault.swift */,
+				CDD9E0AF22B13B5400E5EECC /* Time.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -341,15 +353,19 @@
 			files = (
 				CD46020022A580AE00860A70 /* Constants.swift in Sources */,
 				CD46020A22A5C36C00860A70 /* EdamanProtocole.swift in Sources */,
+				CDD9E0B422B1464600E5EECC /* RecipeDetailViewController.swift in Sources */,
+				CDDED1B022B58C2F00B23F88 /* IngredientLineEntity.swift in Sources */,
 				CD46020822A5C34400860A70 /* EdamamSession.swift in Sources */,
 				CD46020F22A70F3A00860A70 /* CustomRecipeViewCell.swift in Sources */,
 				CD46020D22A66AEE00860A70 /* UserDefault.swift in Sources */,
 				CD126CDC22A2C21C006293AC /* Reciplease.xcdatamodeld in Sources */,
+				CDD9E0B022B13B5400E5EECC /* Time.swift in Sources */,
 				CDD0612A22A3FE2600D474C5 /* RecipeSearchViewController.swift in Sources */,
 				CDD0612622A3FD6400D474C5 /* FavoriteTableViewController.swift in Sources */,
 				CD126CD422A2C21C006293AC /* AppDelegate.swift in Sources */,
 				CD4601FC22A57BC500860A70 /* EdamamRecipes.swift in Sources */,
 				CDD0612822A3FDC300D474C5 /* RecipeTableViewController.swift in Sources */,
+				CDDED1AB22B3F8B500B23F88 /* RecipeEntity.swift in Sources */,
 				CD46020222A5816C00860A70 /* EdamamService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina6_5" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,18 +15,14 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="livre-recettes-cuisine-bio-facile" translatesAutoresizingMaskIntoConstraints="NO" id="lWe-lb-9a4">
-                                <rect key="frame" x="-93" y="248" width="600" height="400"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reciplease" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9kx-Ma-RK8">
-                                <rect key="frame" x="153" y="408" width="162" height="42"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="9kx-Ma-RK8" secondAttribute="height" multiplier="27:7" id="CKk-Mu-agC"/>
-                                    <constraint firstAttribute="height" constant="42" id="Mhm-Rm-AO4"/>
-                                </constraints>
+                                <rect key="frame" x="-7" y="296" width="334" height="42"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="38"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -34,18 +30,20 @@
                         </subviews>
                         <color key="backgroundColor" red="0.21568627450980393" green="0.20000000000000001" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="9kx-Ma-RK8" secondAttribute="trailing" symbolic="YES" id="56t-K9-msr"/>
-                            <constraint firstItem="lWe-lb-9a4" firstAttribute="top" secondItem="9kx-Ma-RK8" secondAttribute="bottom" constant="-202" id="F7o-i6-IXb"/>
-                            <constraint firstItem="lWe-lb-9a4" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Kxd-6K-T3E"/>
-                            <constraint firstItem="9kx-Ma-RK8" firstAttribute="leading" secondItem="lWe-lb-9a4" secondAttribute="trailing" constant="-354" id="e6S-3A-0tS"/>
-                            <constraint firstItem="lWe-lb-9a4" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="f3d-f5-ut6"/>
+                            <constraint firstItem="9kx-Ma-RK8" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="276" id="EXx-eG-7MJ"/>
+                            <constraint firstItem="lWe-lb-9a4" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Xtg-e2-abM"/>
+                            <constraint firstItem="9kx-Ma-RK8" firstAttribute="centerX" secondItem="lWe-lb-9a4" secondAttribute="centerX" id="dhB-HO-aaP"/>
+                            <constraint firstItem="lWe-lb-9a4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fQe-ps-nuk"/>
+                            <constraint firstItem="lWe-lb-9a4" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="tTv-hq-UJ7"/>
+                            <constraint firstItem="9kx-Ma-RK8" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-23" id="vBr-AR-RDs"/>
+                            <constraint firstItem="lWe-lb-9a4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="zUt-Fj-sje"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52" y="374.6305418719212"/>
+            <point key="canvasLocation" x="47.826086956521742" y="372.32142857142856"/>
         </scene>
     </scenes>
     <resources>

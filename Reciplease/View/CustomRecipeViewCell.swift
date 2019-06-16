@@ -30,8 +30,12 @@ class CustomRecipeViewCell: UITableViewCell {
         didSet {
             recipeName.text = recipe?.recipe.label
             guard let time = recipe?.recipe.totalTime  else {return}
-            recipeTime.text = "\(time)"
-            
+            let minuteTime = time.secondsToString()
+            if minuteTime == "0" {
+                recipeTime.text = "NA"
+            }else{
+            recipeTime.text = minuteTime
+            }
             guard let yield = recipe?.recipe.yield  else {return}
             recipeYield.text = "\( yield)"
             
@@ -50,8 +54,36 @@ class CustomRecipeViewCell: UITableViewCell {
     }
     
     func defaultImage() {
-      recipeImage.backgroundColor = #colorLiteral(red: 0.2156862745, green: 0.2, blue: 0.1960784314, alpha: 1)
+      recipeImage.backgroundColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
       
     }
+    
+    
+    var favoritesRecipes: RecipeEntity? {
+        didSet {
+            recipeName.text = favoritesRecipes?.label
+            if favoritesRecipes!.time == "0" {
+                recipeTime.text = "NA"
+            }else{
+            recipeTime.text = favoritesRecipes?.time
+            }
+            recipeYield.text = favoritesRecipes?.yield
+            let recipeEntityObjects = favoritesRecipes?.ingredientLine?.allObjects as? [IngredientLineEntity]
+            let ingredients = recipeEntityObjects?.description
+            
+            recipeIngredients.text = ingredients
+        
+
+            if let url = URL(string: favoritesRecipes!.image!) {
+                if let data = try? Data(contentsOf: url as URL) {
+                    recipeImage.image = UIImage(data: data as Data)
+                } else {
+                    defaultImage()
+        }
+    }
+    
+}
+
+}
 }
 
