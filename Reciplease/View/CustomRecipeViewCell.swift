@@ -31,25 +31,31 @@ class CustomRecipeViewCell: UITableViewCell {
             recipeName.text = recipe?.recipe.label
             guard let time = recipe?.recipe.totalTime  else {return}
             let minuteTime = time.secondsToString()
-            if minuteTime == "0" {
+            if minuteTime == "" {
                 recipeTime.text = "NA"
             }else{
             recipeTime.text = minuteTime
             }
             guard let yield = recipe?.recipe.yield  else {return}
+            if yield == 0 {
+                recipeYield.text = "NA"
+            }else{
             recipeYield.text = "\( yield)"
-            
+            }
             guard let ingredients = recipe?.recipe.ingredients[0].text else {return}
             recipeIngredients.text = ingredients
 
             guard let image = recipe?.recipe.image else {return}
-            if let url = URL(string: image) {
-                if let data = try? Data(contentsOf: url as URL) {
-                    recipeImage.image = UIImage(data: data as Data)
-                } else {
-                    defaultImage()
+            
+            let url = URL(string: image)
+            
+            DispatchQueue.global().async {
+                let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+                DispatchQueue.main.async {
+                    self.recipeImage.image = UIImage(data: data! as Data)
                 }
             }
+            
         }
     }
     
@@ -57,33 +63,31 @@ class CustomRecipeViewCell: UITableViewCell {
       recipeImage.backgroundColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
       
     }
-    
+  
     
     var favoritesRecipes: RecipeEntity? {
         didSet {
             recipeName.text = favoritesRecipes?.label
-            if favoritesRecipes!.time == "0" {
+            if favoritesRecipes!.time == "" {
                 recipeTime.text = "NA"
             }else{
             recipeTime.text = favoritesRecipes?.time
             }
             recipeYield.text = favoritesRecipes?.yield
-            let recipeEntityObjects = favoritesRecipes?.ingredientLine?.allObjects as? [IngredientLineEntity]
-            let ingredients = recipeEntityObjects?.description
             
-            recipeIngredients.text = ingredients
-        
+            if let ingredients = favoritesRecipes?.ingredient?.allObjects as? [IngredientEntity] {
 
-            if let url = URL(string: favoritesRecipes!.image!) {
-                if let data = try? Data(contentsOf: url as URL) {
-                    recipeImage.image = UIImage(data: data as Data)
-                } else {
-                    defaultImage()
+                
+                recipeIngredients.text = ingredients.map({$0.text ?? ""}).joined(separator: ", ")
+            }
+            guard let image = favoritesRecipes?.image else {return}
+                   recipeImage.image = UIImage(data: image as Data)
+           
         }
-    }
-    
+//    }
+//
 }
 
 }
-}
+
 

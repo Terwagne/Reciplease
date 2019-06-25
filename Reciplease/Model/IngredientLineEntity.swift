@@ -22,10 +22,10 @@ class IngredientLineEntity: NSManagedObject {
         return ingredientLine
         
 }
-    static func add(viewContext: NSManagedObjectContext = AppDelegate.viewContext, recipe: RecipeEntity, ingredients: [String]) {
-        for index in 0...ingredients.count - 1 {
+    static func add(viewContext: NSManagedObjectContext = AppDelegate.viewContext, recipe: RecipeEntity, ingredientLineEntity: [String]) {
+        for index in 0...ingredientLineEntity.count - 1 {
             let ingredient = IngredientLineEntity(context: viewContext)
-            ingredient.name = ingredients[index]
+            ingredient.name = ingredientLineEntity[index]
           
             ingredient.recipe = recipe
         }

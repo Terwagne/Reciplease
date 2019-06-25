@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class RecipeDetailViewController: UIViewController {
-
+    
     @IBOutlet weak var recipeImage: UIImageView!
     
     @IBOutlet weak var recipeName: UILabel!
@@ -18,7 +18,7 @@ class RecipeDetailViewController: UIViewController {
     @IBOutlet weak var recipeDetailIngredientTableView: UITableView!
     
     @IBOutlet weak var getDirectionsButton: UIButton!
-   
+    
     @IBOutlet weak var yieldLabel: UILabel!
     
     @IBOutlet weak var timeLabel: UILabel!
@@ -29,116 +29,139 @@ class RecipeDetailViewController: UIViewController {
     var edamanRecipes:EdamamRecipes?
     var ingredients = [String]()
     var recipeDetail: Recipe?
-    var favoritesRecipesDetail: [RecipeEntity]?
+    var favoritesRecipes: [RecipeEntity] = RecipeEntity.fetchAll()
     var favorite:Bool = false
+    var favoriteSelected: [RecipeEntity]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setFavoriteButton()
-        displayRecipe()
-       
-       recipeDetailIngredientTableView.dataSource = self
-        recipeDetailIngredientTableView.reloadData()
-        
-        
+        if favorite == false {
+            displayRecipe()
+        }else{
+            print(favoritesRecipes)
+            displayFavoritesRecipes()
+            
+            recipeDetailIngredientTableView.dataSource = self
+            recipeDetailIngredientTableView.reloadData()
+            
+        }
         
     }
     override func viewWillAppear(_ animated: Bool) {
-        favoritesRecipesDetail = RecipeEntity.fetchAll()
-        displayFavorite()
+        super.viewWillAppear(animated)
+        if RecipeEntity.recipeAlreadyExist(label: recipeName.text!) {
+            favoriteButton.tintColor = UIColor.green
+        } else {
+            favoriteButton.tintColor = .white
+            
+        }
+        
     }
-
+    
     @IBAction func favoriteButtonAction(_ sender: UIBarButtonItem) {
         print("add favorite button")
-        if favorite {
-            RecipeEntity.delete(label: recipeDetail!.label)
-        } else {
-            RecipeEntity.add(recipe: recipeDetail!)
-        }
-        setFavoriteButton()
-       
-    }
-    
-  func setFavoriteButton() {
-    guard recipeDetail != nil else{return}
-    guard let recipeLabel = recipeDetail?.label else {return}
-
-    if RecipeEntity.RecipeAlreadyExist(label: recipeLabel){
-            favorite = true
-            favoriteButton.tintColor = UIColor.green
-        
-        } else {
-            print("save favorite")
-        print (recipeDetail?.label as Any)
-            favorite = false
+        if RecipeEntity.recipeAlreadyExist(label:recipeName.text!){
+            RecipeEntity.delete(label: recipeName.text!)
             favoriteButton.tintColor = .white
+            
+        }else{
+            guard let recipeDetail = recipeDetail else {return}
+            RecipeEntity.add(recipe: recipeDetail)
+            favoriteButton.tintColor = UIColor.green
+            
+            try? AppDelegate.viewContext.save()
+            print(RecipeEntity.all)
+        }
     }
     
-    print(favoritesRecipesDetail as Any)
-        
-    }
     @IBAction func getRecipeDirection(_ sender: UIButton) {
         print("getRecipeDirection")
-        let urlSource = recipeDetail!.url
+        if favorite == false {
+        guard let recipeDetail = recipeDetail else {return}
+        let urlSource = recipeDetail.url
         print("source : \(urlSource)")
         guard let url = URL(string: urlSource) else {return}
         UIApplication.shared.open(url)
+        }else{
+            let urlSource = favoritesRecipes[0].url
+            guard let url = URL(string: urlSource!) else {return}
+            UIApplication.shared.open(url)
+        }
     }
-   
-    func displayRecipe()  {
+    
+    func displayRecipe() {
         guard let recipeDetail = recipeDetail else {return}
-        
         recipeName.text = recipeDetail.label
-        if recipeDetail.totalTime == 0 {
+        let minuteTime = recipeDetail.totalTime.secondsToString()
+        if minuteTime == "" {
             timeLabel.text = "NA"
         }else{
-        timeLabel.text = String("\((recipeDetail.totalTime.secondsToString()))")
+            timeLabel.text = String("\((recipeDetail.totalTime.secondsToString()))")
         }
         let yield = recipeDetail.yield
-        yieldLabel.text = "\( yield)"
-        let image = recipeDetail.image
-                if let url = URL(string: image) {
-                    if let data = try? Data(contentsOf: url as URL) {
-                print(data)
-                recipeImage.image = UIImage(data: data as Data)
+        if yield <= 0 {
+            yieldLabel.text = "NA"
+        }else{
+            yieldLabel.text = "\( yield)"
+        }
+        let image = recipeDetail.image 
+        
+        let url = URL(string: image)
+        
+        DispatchQueue.global().async {
+            let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+            DispatchQueue.main.async {
+                self.recipeImage.image = UIImage(data: data! as Data)
+                
             }
-        } else {
-            recipeImage.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-            recipeImage.image = UIImage(named: "photo is not available")
         }
     }
-    func displayFavorite() {
-        guard let name = recipeDetail?.label else {return}
+    func displayFavoritesRecipes() {
+        let name = favoritesRecipes[0].label
         recipeName.text = name
-        guard let time = recipeDetail?.totalTime else {return}
-        timeLabel.text = String(time.secondsToString())
-        guard let yield = recipeDetail?.yield else {return}
-        yieldLabel.text = String(yield)
-        guard let image = recipeDetail?.image else {return}
-        if let url = URL(string: image) {
-            if let data = try? Data(contentsOf: url as URL) {
-                recipeImage.image = UIImage(data: data as Data)
+        let time = favoritesRecipes[0].time
+        timeLabel.text = time
+        let yield = favoritesRecipes[0].yield
+        yieldLabel.text = yield
+        if let imageData = favoritesRecipes[0].image, let image = UIImage(data: imageData) {
+            recipeImage.image = image
+        } else {
+            recipeImage.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            recipeImage.image = UIImage(named: "photo is not avalaible")
+            
+        }
+        
     }
 }
-    }
-}
+
 extension RecipeDetailViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let recipeIngredients = recipeDetail?.ingredientLines else {return 0}
-        return recipeIngredients.count
+        if favorite == true {
+            let recipeIngredients = IngredientLineEntity.fetchAll()
+            return recipeIngredients.count
+        }else{
+            guard let recipeIngredients = recipeDetail?.ingredientLines else {return 0}
+            return recipeIngredients.count
+        }
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ingredientsDetailCell", for: indexPath)
-        guard let recipeDetail = recipeDetail else { return UITableViewCell() }
-        cell.textLabel?.text = "-" + recipeDetail.ingredientLines[indexPath.row]
-        return cell
+        if favorite == true {
+            let ingredientsLine = IngredientLineEntity.fetchAll()
+            let instructions = ingredientsLine[indexPath.row]
+            guard let name = instructions.name else {return cell}
+            cell.textLabel?.text = name
+            return cell
+            
+            
+        }else{
+            
+            guard let recipeDetail = recipeDetail else { return UITableViewCell() }
+            cell.textLabel?.text = "-" + recipeDetail.ingredientLines[indexPath.row]
+            return cell
+        }
+    }
+    
 }
-}
-
-

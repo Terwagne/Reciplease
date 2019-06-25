@@ -27,29 +27,44 @@ class RecipeEntity: NSManagedObject {
         favoriteRecipe.label = recipe.label
         favoriteRecipe.time =  String(recipe.totalTime)
         favoriteRecipe.yield = String(recipe.yield)
-        favoriteRecipe.image = recipe.image
+       
+        let imageUrlString = recipe.image
+        
+        let imageUrl = URL(string: imageUrlString)!
+        
+        let imageData = try! Data(contentsOf: imageUrl)
+        
+       favoriteRecipe.image = imageData
+        
         favoriteRecipe.url = recipe.url
-    
-        IngredientLineEntity.add(viewContext: viewContext, recipe: favoriteRecipe, ingredients: recipe.ingredientLines)
+       
+
+        IngredientEntity.add(viewContext: viewContext, recipe: favoriteRecipe, ingredientEntity: recipe.ingredients)
+        
+        print(recipe.ingredients)
+        
+        IngredientLineEntity.add(viewContext: viewContext, recipe: favoriteRecipe, ingredientLineEntity: recipe.ingredientLines)
     
         try? viewContext.save()
 }
     static func fetchRecipe (label: String, viewContext: NSManagedObjectContext = AppDelegate.viewContext) -> [RecipeEntity] {
         let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "label == %@", label)
+        request.predicate = NSPredicate(format: "label = %@", label)
         guard let favoritesRecipes = try? viewContext.fetch(request) else {return []}
         return favoritesRecipes
     }
     
-    static func RecipeAlreadyExist(viewContext: NSManagedObjectContext = AppDelegate.viewContext, label: String) -> Bool {
+    static func recipeAlreadyExist(viewContext: NSManagedObjectContext = AppDelegate.viewContext, label: String) -> Bool {
         let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "label == %@", label)
-        if let _ = try? viewContext.fetch(request).first { return true }
-        return false
+        request.predicate = NSPredicate(format: "label = %@", label)
+        guard let recipeEntites = try? viewContext.fetch(request) else { return false }
+        if recipeEntites.isEmpty { return false }
+        return true
+      
     }
     static func delete(label: String, viewContext: NSManagedObjectContext = AppDelegate.viewContext) {
         let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "label == %@", label)
+        request.predicate = NSPredicate(format: "label = %@", label)
         guard let favoritesRecipes = try? viewContext.fetch(request) else {return}
         guard let favoriteRecipe = favoritesRecipes.first else {return}
         viewContext.delete(favoriteRecipe)

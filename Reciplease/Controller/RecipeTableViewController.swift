@@ -17,7 +17,7 @@ class RecipeTableViewController: UIViewController {
     var edamanRecipes:EdamamRecipes?
     var hits: [Hit]?
     var recipeDetail: Recipe?
-  
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,30 +25,29 @@ class RecipeTableViewController: UIViewController {
         recipesTableView.register(UINib(nibName: "CustomRecipeViewCell", bundle: nil), forCellReuseIdentifier: "CustomRecipeViewCell")
         recipesTableView.reloadData()
     }
-    
+    @IBAction func unwindToRecipes(segue:UIStoryboardSegue) { }
+   
     
     func updateRecipeDetail(indexPath: IndexPath) {
-    guard let recipeDetail = edamanRecipes?.hits[indexPath.row].recipe else {return}
-    self.recipeDetail = recipeDetail
-         self.performSegue(withIdentifier: "recipeDetail", sender: self)
+        guard let recipeDetail = edamanRecipes?.hits[indexPath.row].recipe else {return}
+        self.recipeDetail = recipeDetail
+        self.performSegue(withIdentifier: "recipeDetail", sender: self)
     }
-
+    
     //   navigation
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: (Any)?) {
         let segueName = "recipeDetail"
         if segue.identifier == segueName {
             let recipeDetailVC = segue.destination as! RecipeDetailViewController
             recipeDetailVC.recipeDetail = recipeDetail
+            recipeDetailVC.favorite = false
+        }
     }
 }
-}
-    // MARK: - Table view data source
+// MARK: - Table view data source
 extension RecipeTableViewController: UITableViewDataSource, UITableViewDelegate {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let edamamRecipes = edamanRecipes else { return 0 }
         return edamamRecipes.hits.count
@@ -61,14 +60,14 @@ extension RecipeTableViewController: UITableViewDataSource, UITableViewDelegate 
         cell.recipe = edamamRecipes.hits[indexPath.row]
         
         return cell
-        }
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-         guard let indexPath = tableView.indexPathForSelectedRow else { return }
+        guard let indexPath = tableView.indexPathForSelectedRow else { return }
         updateRecipeDetail(indexPath: indexPath)
-
+        
         
     }
-   
-
+    
+    
 }

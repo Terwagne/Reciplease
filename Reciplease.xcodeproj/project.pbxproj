@@ -21,6 +21,7 @@
 		CD46020A22A5C36C00860A70 /* EdamanProtocole.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46020922A5C36C00860A70 /* EdamanProtocole.swift */; };
 		CD46020D22A66AEE00860A70 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46020C22A66AEE00860A70 /* UserDefault.swift */; };
 		CD46020F22A70F3A00860A70 /* CustomRecipeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46020E22A70F3A00860A70 /* CustomRecipeViewCell.swift */; };
+		CD7B8E7922C0C35A00525694 /* IngredientEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7B8E7822C0C35A00525694 /* IngredientEntity.swift */; };
 		CDD0612622A3FD6400D474C5 /* FavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD0612522A3FD6400D474C5 /* FavoriteTableViewController.swift */; };
 		CDD0612822A3FDC300D474C5 /* RecipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD0612722A3FDC300D474C5 /* RecipeTableViewController.swift */; };
 		CDD0612A22A3FE2600D474C5 /* RecipeSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD0612922A3FE2600D474C5 /* RecipeSearchViewController.swift */; };
@@ -63,6 +64,7 @@
 		CD46020922A5C36C00860A70 /* EdamanProtocole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdamanProtocole.swift; sourceTree = "<group>"; };
 		CD46020C22A66AEE00860A70 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		CD46020E22A70F3A00860A70 /* CustomRecipeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRecipeViewCell.swift; sourceTree = "<group>"; };
+		CD7B8E7822C0C35A00525694 /* IngredientEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientEntity.swift; sourceTree = "<group>"; };
 		CDD0612522A3FD6400D474C5 /* FavoriteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewController.swift; sourceTree = "<group>"; };
 		CDD0612722A3FDC300D474C5 /* RecipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewController.swift; sourceTree = "<group>"; };
 		CDD0612922A3FE2600D474C5 /* RecipeSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearchViewController.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				CD46020922A5C36C00860A70 /* EdamanProtocole.swift */,
 				CDDED1AA22B3F8B500B23F88 /* RecipeEntity.swift */,
 				CDDED1AF22B58C2F00B23F88 /* IngredientLineEntity.swift */,
+				CD7B8E7822C0C35A00525694 /* IngredientEntity.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				CD46020822A5C34400860A70 /* EdamamSession.swift in Sources */,
 				CD46020F22A70F3A00860A70 /* CustomRecipeViewCell.swift in Sources */,
 				CD46020D22A66AEE00860A70 /* UserDefault.swift in Sources */,
+				CD7B8E7922C0C35A00525694 /* IngredientEntity.swift in Sources */,
 				CD126CDC22A2C21C006293AC /* Reciplease.xcdatamodeld in Sources */,
 				CDD9E0B022B13B5400E5EECC /* Time.swift in Sources */,
 				CDD0612A22A3FE2600D474C5 /* RecipeSearchViewController.swift in Sources */,

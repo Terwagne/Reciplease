@@ -45,13 +45,27 @@
                             <outlet property="delegate" destination="WP9-Cp-UVk" id="OaG-4i-Iph"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Favorites" id="Cud-8F-vql"/>
+                    <navigationItem key="navigationItem" title="Favorites" id="Cud-8F-vql">
+                        <barButtonItem key="backBarButtonItem" id="h6h-Ud-bXX"/>
+                        <barButtonItem key="leftBarButtonItem" title="&lt; Back" id="d0c-P5-DvX">
+                            <connections>
+                                <segue destination="yFc-St-S9s" kind="unwind" unwindAction="unwindToRecipesWithSegue:" id="LCa-wk-l3U"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="rubbish-bin" id="T6s-Ge-XLz">
+                            <connections>
+                                <action selector="deleteFavorites:" destination="WP9-Cp-UVk" id="3Mx-d1-vqR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="deleteFavoriteBarButton" destination="T6s-Ge-XLz" id="qFK-WW-QmB"/>
                         <outlet property="tableView" destination="QuY-y7-eqQ" id="PGY-nE-U7c"/>
                         <segue destination="5A7-K3-lfd" kind="show" identifier="recipeDetail" id="zpG-Uf-98o"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eu4-4d-aQX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="yFc-St-S9s" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="881" y="776"/>
         </scene>
@@ -59,10 +73,13 @@
         <scene sceneID="CkK-Z1-w7O">
             <objects>
                 <navigationController id="6I8-mu-WfO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Favorite" image="star" id="XMF-Ml-Egz"/>
+                    <tabBarItem key="tabBarItem" title="Favorite" image="star" id="XMF-Ml-Egz">
+                        <color key="badgeColor" red="0.29803921570000003" green="0.58823529409999997" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fNM-xd-gDQ">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.29803921570000003" green="0.58823529409999997" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.21568627450980393" green="0.20000000000000001" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -135,11 +152,8 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="an4-dh-oNr">
-                                <rect key="frame" x="20" y="558" width="335" height="40"/>
+                                <rect key="frame" x="20" y="568" width="339" height="30"/>
                                 <color key="backgroundColor" red="0.29803921570000003" green="0.58823529409999997" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="ad2-cw-AzL"/>
-                                </constraints>
                                 <state key="normal" title="Search for recipes">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -147,6 +161,12 @@
                                     <action selector="searchButtonPressed:" destination="zx3-ce-a5m" eventType="touchUpInside" id="f9q-oe-Oe4"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="yne-7y-oDy" userLabel="Activity Indicator">
+                                <rect key="frame" x="179.5" y="563" width="20" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="xcn-lT-D8O"/>
+                                </constraints>
+                            </activityIndicatorView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="8sS-WX-tYU">
                                 <rect key="frame" x="15" y="174" width="355" height="30"/>
                                 <subviews>
@@ -172,7 +192,7 @@
                                 </subviews>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="25I-0f-I2H">
-                                <rect key="frame" x="15" y="219" width="355" height="319"/>
+                                <rect key="frame" x="15" y="219" width="355" height="329"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientCell" textLabel="NYu-zi-yS8" style="IBUITableViewCellStyleDefault" id="J31-mp-rs5">
@@ -202,18 +222,20 @@
                         <color key="backgroundColor" red="0.21568627450980393" green="0.20000000000000001" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="9Uk-II-yZF" firstAttribute="trailing" secondItem="an4-dh-oNr" secondAttribute="trailing" constant="16" id="1p5-Sb-X8s"/>
                             <constraint firstItem="dIv-8t-2c3" firstAttribute="top" secondItem="9Uk-II-yZF" secondAttribute="top" id="6dW-ru-QXa"/>
                             <constraint firstItem="an4-dh-oNr" firstAttribute="top" secondItem="25I-0f-I2H" secondAttribute="bottom" constant="20" id="C9h-A0-v16"/>
                             <constraint firstItem="9Uk-II-yZF" firstAttribute="trailing" secondItem="8sS-WX-tYU" secondAttribute="trailing" constant="5" id="JVq-NM-0AB"/>
                             <constraint firstItem="9Uk-II-yZF" firstAttribute="trailing" secondItem="25I-0f-I2H" secondAttribute="trailing" constant="5" id="KXw-jc-OJO"/>
                             <constraint firstItem="8sS-WX-tYU" firstAttribute="leading" secondItem="9Uk-II-yZF" secondAttribute="leading" constant="15" id="N8L-hs-6lc"/>
-                            <constraint firstItem="9Uk-II-yZF" firstAttribute="trailing" secondItem="an4-dh-oNr" secondAttribute="trailing" constant="20" id="TnP-la-nhV"/>
                             <constraint firstItem="9Uk-II-yZF" firstAttribute="bottom" secondItem="an4-dh-oNr" secondAttribute="bottom" constant="20" id="WWj-Bt-fBU"/>
                             <constraint firstItem="an4-dh-oNr" firstAttribute="leading" secondItem="9Uk-II-yZF" secondAttribute="leading" constant="20" id="cN0-P6-3YB"/>
                             <constraint firstItem="25I-0f-I2H" firstAttribute="top" secondItem="8sS-WX-tYU" secondAttribute="bottom" constant="15" id="e3w-Jl-sAL"/>
                             <constraint firstItem="dIv-8t-2c3" firstAttribute="leading" secondItem="9Uk-II-yZF" secondAttribute="leading" id="eSa-ab-mxq"/>
                             <constraint firstItem="8sS-WX-tYU" firstAttribute="top" secondItem="dIv-8t-2c3" secondAttribute="bottom" constant="20" id="hkK-v3-hBl"/>
                             <constraint firstItem="25I-0f-I2H" firstAttribute="leading" secondItem="9Uk-II-yZF" secondAttribute="leading" constant="15" id="i1L-Og-7vm"/>
+                            <constraint firstItem="yne-7y-oDy" firstAttribute="centerY" secondItem="an4-dh-oNr" secondAttribute="centerY" id="jZG-sn-hSr"/>
+                            <constraint firstItem="yne-7y-oDy" firstAttribute="leading" secondItem="an4-dh-oNr" secondAttribute="trailing" constant="-179.5" id="jxb-vz-03G"/>
                             <constraint firstItem="dIv-8t-2c3" firstAttribute="trailing" secondItem="9Uk-II-yZF" secondAttribute="trailing" id="ruA-kR-7NF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9Uk-II-yZF"/>
@@ -227,8 +249,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="yne-7y-oDy" id="3D1-Jh-dFZ"/>
                         <outlet property="ingredientsTableView" destination="25I-0f-I2H" id="Vge-ca-nwM"/>
                         <outlet property="ingredientsTextField" destination="qkF-Af-KWk" id="9Qo-vA-Kmf"/>
+                        <outlet property="searchForRecipesButton" destination="an4-dh-oNr" id="1v7-w0-sNb"/>
                         <segue destination="7fs-n5-Odk" kind="show" identifier="searchRecipesVC" id="R2S-XG-JV7"/>
                     </connections>
                 </viewController>
@@ -278,22 +302,22 @@
                                 <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="r4I-jJ-Fne">
-                                <rect key="frame" x="20" y="64" width="335" height="200"/>
+                                <rect key="frame" x="20" y="64" width="335" height="193"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name of the recipe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Iz-l6-rHW">
-                                <rect key="frame" x="83" y="272" width="213" height="30.5"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="28"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name of the recipe" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Iz-l6-rHW">
+                                <rect key="frame" x="10" y="265" width="355" height="27.5"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SR1-tv-24l">
-                                <rect key="frame" x="20" y="322" width="92.5" height="22"/>
+                                <rect key="frame" x="20" y="312" width="92.5" height="22"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yjz-ZG-dim">
-                                <rect key="frame" x="20" y="357" width="339" height="197"/>
+                                <rect key="frame" x="20" y="347" width="339" height="197"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="yjz-ZG-dim" secondAttribute="height" multiplier="339:197" id="IN6-AD-ina"/>
@@ -323,7 +347,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aol-fc-cY0">
-                                <rect key="frame" x="120" y="584" width="135" height="34"/>
+                                <rect key="frame" x="120" y="574" width="135" height="34"/>
                                 <color key="backgroundColor" red="0.29803921570000003" green="0.58823529409999997" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
                                 <state key="normal" title="Get directions">
@@ -385,10 +409,11 @@
                             <constraint firstItem="3Iz-l6-rHW" firstAttribute="top" secondItem="r4I-jJ-Fne" secondAttribute="bottom" constant="8" id="CK7-2E-DrI"/>
                             <constraint firstItem="r4I-jJ-Fne" firstAttribute="leading" secondItem="VW6-m6-i1g" secondAttribute="leading" constant="20" id="Djw-Da-UMh"/>
                             <constraint firstItem="r4I-jJ-Fne" firstAttribute="top" secondItem="xfP-m2-C8g" secondAttribute="bottom" constant="-66" id="GM2-o0-BVL"/>
-                            <constraint firstItem="3Iz-l6-rHW" firstAttribute="leading" secondItem="VW6-m6-i1g" secondAttribute="leading" constant="83" id="NFI-mx-huP"/>
+                            <constraint firstItem="3Iz-l6-rHW" firstAttribute="leading" secondItem="VW6-m6-i1g" secondAttribute="leading" constant="10" id="NFI-mx-huP"/>
+                            <constraint firstItem="VW6-m6-i1g" firstAttribute="bottom" secondItem="aol-fc-cY0" secondAttribute="bottom" constant="10" id="P13-y1-kHY"/>
                             <constraint firstItem="yjz-ZG-dim" firstAttribute="leading" secondItem="VW6-m6-i1g" secondAttribute="leading" constant="20" id="QbC-yE-wYQ"/>
                             <constraint firstItem="VW6-m6-i1g" firstAttribute="trailing" secondItem="aol-fc-cY0" secondAttribute="trailing" constant="120" id="Zrz-3g-4UR"/>
-                            <constraint firstItem="VW6-m6-i1g" firstAttribute="trailing" secondItem="3Iz-l6-rHW" secondAttribute="trailing" constant="79" id="cQB-4g-zPV"/>
+                            <constraint firstItem="VW6-m6-i1g" firstAttribute="trailing" secondItem="3Iz-l6-rHW" secondAttribute="trailing" constant="10" id="cQB-4g-zPV"/>
                             <constraint firstItem="VW6-m6-i1g" firstAttribute="trailing" secondItem="r4I-jJ-Fne" secondAttribute="trailing" constant="20" id="d9d-jW-GeV"/>
                             <constraint firstItem="aol-fc-cY0" firstAttribute="leading" secondItem="VW6-m6-i1g" secondAttribute="leading" constant="120" id="dKd-O2-Eb8"/>
                             <constraint firstItem="aol-fc-cY0" firstAttribute="top" secondItem="yjz-ZG-dim" secondAttribute="bottom" constant="30" id="eRR-ij-ihO"/>
@@ -396,13 +421,12 @@
                             <constraint firstItem="r4I-jJ-Fne" firstAttribute="top" secondItem="VW6-m6-i1g" secondAttribute="top" id="hBu-ew-eaf"/>
                             <constraint firstItem="SR1-tv-24l" firstAttribute="leading" secondItem="VW6-m6-i1g" secondAttribute="leading" constant="20" id="hMs-BP-mbv"/>
                             <constraint firstItem="VW6-m6-i1g" firstAttribute="trailing" secondItem="SR1-tv-24l" secondAttribute="trailing" constant="262.5" id="hg2-t8-YLL"/>
-                            <constraint firstItem="aol-fc-cY0" firstAttribute="bottom" secondItem="VW6-m6-i1g" secondAttribute="bottom" id="jlC-On-BqV"/>
                             <constraint firstItem="SR1-tv-24l" firstAttribute="top" secondItem="3Iz-l6-rHW" secondAttribute="bottom" constant="19.5" id="kmc-wx-CZx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VW6-m6-i1g"/>
                     </view>
                     <navigationItem key="navigationItem" title="Reciplease" id="BXy-Ot-nSM">
-                        <barButtonItem key="rightBarButtonItem" image="star (1)" id="4EW-kx-Fer">
+                        <barButtonItem key="rightBarButtonItem" image="star" id="4EW-kx-Fer">
                             <connections>
                                 <action selector="favoriteButtonAction:" destination="5A7-K3-lfd" id="CGN-mh-NER"/>
                             </connections>
@@ -433,6 +457,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" red="0.29803921570000003" green="0.58823529409999997" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.2156862745" green="0.20000000000000001" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" red="0.29803921570000003" green="0.58823529409999997" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="eJo-dG-Hmr" kind="relationship" relationship="viewControllers" id="Ty5-e1-miY"/>
@@ -447,9 +472,9 @@
     <resources>
         <image name="clock-circular-outline" width="8" height="8"/>
         <image name="group" width="5" height="5"/>
+        <image name="rubbish-bin" width="10" height="10"/>
         <image name="search-1" width="8" height="8"/>
-        <image name="star" width="8" height="8"/>
-        <image name="star (1)" width="8" height="8"/>
+        <image name="star" width="10" height="10"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="zpG-Uf-98o"/>
