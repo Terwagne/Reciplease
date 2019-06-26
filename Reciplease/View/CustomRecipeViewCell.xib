@@ -88,15 +88,25 @@
                             <constraint firstAttribute="trailing" secondItem="Sin-gA-j93" secondAttribute="trailing" id="lgg-wd-7me"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ow5-Kk-J4d">
+                        <rect key="frame" x="26" y="11" width="253" height="21"/>
+                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" red="0.2156862745" green="0.20000000000000001" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="bu5-iP-ikm" secondAttribute="bottom" constant="10" id="2wD-a5-7YD"/>
+                    <constraint firstItem="2MT-Jk-7g6" firstAttribute="leading" secondItem="ow5-Kk-J4d" secondAttribute="trailing" constant="10" id="8Yf-vi-Wrz"/>
                     <constraint firstItem="6hk-5K-FMZ" firstAttribute="leading" secondItem="0Hm-ZZ-SVy" secondAttribute="leading" id="H9M-X6-AVk"/>
                     <constraint firstAttribute="trailing" secondItem="bu5-iP-ikm" secondAttribute="trailing" constant="10" id="IVS-rB-A09"/>
+                    <constraint firstItem="bu5-iP-ikm" firstAttribute="top" secondItem="ow5-Kk-J4d" secondAttribute="bottom" constant="18" id="QSZ-Eu-XMO"/>
                     <constraint firstItem="bu5-iP-ikm" firstAttribute="top" secondItem="0Hm-ZZ-SVy" secondAttribute="top" constant="50" id="T9G-AP-bHB"/>
                     <constraint firstItem="6hk-5K-FMZ" firstAttribute="top" secondItem="0Hm-ZZ-SVy" secondAttribute="top" id="XFP-G8-eLX"/>
+                    <constraint firstItem="ow5-Kk-J4d" firstAttribute="leading" secondItem="0Hm-ZZ-SVy" secondAttribute="leadingMargin" constant="10" id="ZW7-0T-jf4"/>
                     <constraint firstAttribute="trailing" secondItem="6hk-5K-FMZ" secondAttribute="trailing" id="ZfA-D0-t3a"/>
+                    <constraint firstItem="ow5-Kk-J4d" firstAttribute="top" secondItem="0Hm-ZZ-SVy" secondAttribute="topMargin" id="bFC-7f-cpY"/>
                     <constraint firstItem="bu5-iP-ikm" firstAttribute="leading" secondItem="0Hm-ZZ-SVy" secondAttribute="leading" constant="10" id="bwX-ml-X0u"/>
                     <constraint firstItem="2MT-Jk-7g6" firstAttribute="trailing" secondItem="0Hm-ZZ-SVy" secondAttribute="trailingMargin" id="c8r-MC-Pxj"/>
                     <constraint firstAttribute="bottom" secondItem="6hk-5K-FMZ" secondAttribute="bottom" id="vUP-Wj-QV4"/>
@@ -105,6 +115,7 @@
             </tableViewCellContentView>
             <gestureRecognizers/>
             <connections>
+                <outlet property="calorieLabel" destination="ow5-Kk-J4d" id="4dC-xj-OS0"/>
                 <outlet property="recipeImage" destination="6hk-5K-FMZ" id="1V5-Ja-qfG"/>
                 <outlet property="recipeIngredients" destination="LxM-8t-Tnc" id="3Ag-Ig-tlX"/>
                 <outlet property="recipeName" destination="klh-vz-vyj" id="6sK-Vq-f7R"/>

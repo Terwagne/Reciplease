@@ -15,7 +15,8 @@ class CustomRecipeViewCell: UITableViewCell {
     @IBOutlet weak var recipeYield: UILabel!
     @IBOutlet weak var recipeTime: UILabel!
    
-
+    @IBOutlet weak var calorieLabel: UILabel!
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,12 +31,9 @@ class CustomRecipeViewCell: UITableViewCell {
         didSet {
             recipeName.text = recipe?.recipe.label
             guard let time = recipe?.recipe.totalTime  else {return}
-            let minuteTime = time.secondsToString()
-            if minuteTime == "" {
-                recipeTime.text = "NA"
-            }else{
-            recipeTime.text = minuteTime
-            }
+            let total = time.convertIntToTime
+            recipeTime.text = total
+            
             guard let yield = recipe?.recipe.yield  else {return}
             if yield == 0 {
                 recipeYield.text = "NA"
@@ -55,6 +53,9 @@ class CustomRecipeViewCell: UITableViewCell {
                     self.recipeImage.image = UIImage(data: data! as Data)
                 }
             }
+            guard let calories = recipe?.recipe.calories else {return}
+            let caloriesInt = Int(calories)
+            calorieLabel.text = "\(caloriesInt)" +  " calories"
             
         }
     }
@@ -71,7 +72,7 @@ class CustomRecipeViewCell: UITableViewCell {
             if favoritesRecipes!.time == "" {
                 recipeTime.text = "NA"
             }else{
-            recipeTime.text = favoritesRecipes?.time
+                recipeTime.text = (favoritesRecipes?.time)! + " mn"
             }
             recipeYield.text = favoritesRecipes?.yield
             
@@ -82,10 +83,12 @@ class CustomRecipeViewCell: UITableViewCell {
             }
             guard let image = favoritesRecipes?.image else {return}
                    recipeImage.image = UIImage(data: image as Data)
-           
+          
+            guard let calories = favoritesRecipes?.calories else {return}
+             let caloriesInt = Int(calories)
+            calorieLabel.text = "\(caloriesInt)" +  " calories"
         }
-//    }
-//
+        
 }
 
 }

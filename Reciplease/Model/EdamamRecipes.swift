@@ -29,6 +29,8 @@ struct Recipe: Decodable {
     let ingredientLines: [String]
     let ingredients: [Ingredient]
     let totalTime: Int
+    let calories: Double
+    let dietLabels: [String]
 }
 
 // MARK: - Ingredient

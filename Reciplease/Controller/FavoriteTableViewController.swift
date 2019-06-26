@@ -41,6 +41,7 @@ class FavoriteTableViewController: UIViewController {
     if let detailsVC = segue.destination as? RecipeDetailViewController {
         detailsVC.favoritesRecipes = favoritesRecipes
         detailsVC.favorite = true
+        
     }
 }
     

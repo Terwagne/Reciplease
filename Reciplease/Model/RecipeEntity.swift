@@ -37,6 +37,9 @@ class RecipeEntity: NSManagedObject {
        favoriteRecipe.image = imageData
         
         favoriteRecipe.url = recipe.url
+        
+       
+        favoriteRecipe.calories = recipe.calories
        
 
         IngredientEntity.add(viewContext: viewContext, recipe: favoriteRecipe, ingredientEntity: recipe.ingredients)

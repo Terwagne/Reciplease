@@ -9,6 +9,7 @@
         <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RecipeEntity" inverseName="ingredientLine" inverseEntity="RecipeEntity" syncable="YES"/>
     </entity>
     <entity name="RecipeEntity" representedClassName=".RecipeEntity" syncable="YES" codeGenerationType="category">
+        <attribute name="calories" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="label" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="time" optional="YES" attributeType="String" syncable="YES"/>
@@ -18,8 +19,8 @@
         <relationship name="ingredientLine" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="IngredientLineEntity" inverseName="recipe" inverseEntity="IngredientLineEntity" syncable="YES"/>
     </entity>
     <elements>
-        <element name="IngredientLineEntity" positionX="-157.046875" positionY="114.09765625" width="128" height="75"/>
-        <element name="RecipeEntity" positionX="-336.50390625" positionY="70.10546875" width="128" height="150"/>
         <element name="IngredientEntity" positionX="-179.53125" positionY="250.6640625" width="128" height="75"/>
+        <element name="IngredientLineEntity" positionX="-157.046875" positionY="114.09765625" width="128" height="75"/>
+        <element name="RecipeEntity" positionX="-336.50390625" positionY="70.10546875" width="128" height="165"/>
     </elements>
 </model>

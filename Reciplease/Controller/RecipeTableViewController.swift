@@ -17,6 +17,7 @@ class RecipeTableViewController: UIViewController {
     var edamanRecipes:EdamamRecipes?
     var hits: [Hit]?
     var recipeDetail: Recipe?
+    var calorie: Bool?
     
     
     override func viewDidLoad() {
@@ -25,7 +26,7 @@ class RecipeTableViewController: UIViewController {
         recipesTableView.register(UINib(nibName: "CustomRecipeViewCell", bundle: nil), forCellReuseIdentifier: "CustomRecipeViewCell")
         recipesTableView.reloadData()
     }
-    @IBAction func unwindToRecipes(segue:UIStoryboardSegue) { }
+  
    
     
     func updateRecipeDetail(indexPath: IndexPath) {
@@ -42,6 +43,7 @@ class RecipeTableViewController: UIViewController {
             let recipeDetailVC = segue.destination as! RecipeDetailViewController
             recipeDetailVC.recipeDetail = recipeDetail
             recipeDetailVC.favorite = false
+            
         }
     }
 }

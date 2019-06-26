@@ -25,6 +25,8 @@ class RecipeDetailViewController: UIViewController {
     
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
     
+    @IBOutlet weak var calorieLabel: UILabel!
+    
     let edamamService = EdamamService()
     var edamanRecipes:EdamamRecipes?
     var ingredients = [String]()
@@ -63,7 +65,7 @@ class RecipeDetailViewController: UIViewController {
         if RecipeEntity.recipeAlreadyExist(label:recipeName.text!){
             RecipeEntity.delete(label: recipeName.text!)
             favoriteButton.tintColor = .white
-            
+            let _ = navigationController?.popViewController(animated: true)
         }else{
             guard let recipeDetail = recipeDetail else {return}
             RecipeEntity.add(recipe: recipeDetail)
@@ -73,6 +75,7 @@ class RecipeDetailViewController: UIViewController {
             print(RecipeEntity.all)
         }
     }
+   
     
     @IBAction func getRecipeDirection(_ sender: UIButton) {
         print("getRecipeDirection")
@@ -92,11 +95,11 @@ class RecipeDetailViewController: UIViewController {
     func displayRecipe() {
         guard let recipeDetail = recipeDetail else {return}
         recipeName.text = recipeDetail.label
-        let minuteTime = recipeDetail.totalTime.secondsToString()
+        let minuteTime = recipeDetail.totalTime.convertIntToTime
         if minuteTime == "" {
             timeLabel.text = "NA"
         }else{
-            timeLabel.text = String("\((recipeDetail.totalTime.secondsToString()))")
+            timeLabel.text = String("\(minuteTime)")
         }
         let yield = recipeDetail.yield
         if yield <= 0 {
@@ -104,6 +107,10 @@ class RecipeDetailViewController: UIViewController {
         }else{
             yieldLabel.text = "\( yield)"
         }
+        let calories = recipeDetail.calories
+        let caloriesInt = Int(calories)
+        calorieLabel.text = "\(caloriesInt)" +  " calories"
+        
         let image = recipeDetail.image 
         
         let url = URL(string: image)
@@ -120,7 +127,7 @@ class RecipeDetailViewController: UIViewController {
         let name = favoritesRecipes[0].label
         recipeName.text = name
         let time = favoritesRecipes[0].time
-        timeLabel.text = time
+        timeLabel.text = time! + " mn"
         let yield = favoritesRecipes[0].yield
         yieldLabel.text = yield
         if let imageData = favoritesRecipes[0].image, let image = UIImage(data: imageData) {
@@ -130,7 +137,9 @@ class RecipeDetailViewController: UIViewController {
             recipeImage.image = UIImage(named: "photo is not avalaible")
             
         }
-        
+       let calories = favoritesRecipes[0].calories
+        let calorie = Int(calories)
+        calorieLabel.text = "\(calorie)" +  " calories"
     }
 }
 
