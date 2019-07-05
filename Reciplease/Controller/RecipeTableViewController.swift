@@ -9,16 +9,14 @@
 import UIKit
 
 class RecipeTableViewController: UIViewController {
-    //    outlets
+    // MARK:    Outlets
     @IBOutlet var recipesTableView: UITableView!
-    // MARK: - Properties
     
+    // MARK: Properties
     let edamamService = EdamamService()
     var edamanRecipes:EdamamRecipes?
     var hits: [Hit]?
     var recipeDetail: Recipe?
-    var calorie: Bool?
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +24,6 @@ class RecipeTableViewController: UIViewController {
         recipesTableView.register(UINib(nibName: "CustomRecipeViewCell", bundle: nil), forCellReuseIdentifier: "CustomRecipeViewCell")
         recipesTableView.reloadData()
     }
-  
-   
     
     func updateRecipeDetail(indexPath: IndexPath) {
         guard let recipeDetail = edamanRecipes?.hits[indexPath.row].recipe else {return}
@@ -35,7 +31,7 @@ class RecipeTableViewController: UIViewController {
         self.performSegue(withIdentifier: "recipeDetail", sender: self)
     }
     
-    //   navigation
+    // MARK:    Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: (Any)?) {
         let segueName = "recipeDetail"
@@ -67,9 +63,5 @@ extension RecipeTableViewController: UITableViewDataSource, UITableViewDelegate 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
         updateRecipeDetail(indexPath: indexPath)
-        
-        
     }
-    
-    
 }

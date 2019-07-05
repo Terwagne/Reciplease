@@ -11,28 +11,20 @@ import Foundation
 extension Int {
 
 // Cooking time
-func secondsToString() -> String {
-    let hours: Int = self / 3600
-    let minutes: Int = (self / 60) % 60
-   
-    var timeInString: String = ""
-    
-    if hours > 0 {
-        timeInString = String(hours) + " h"
-    }
-    
-    if minutes > 0 {
-        timeInString.append(String(minutes) + " m")
-    }
-    
-    print("\(self) \(timeInString)")
-    
-    return timeInString
-}
-    
+
     var convertIntToTime: String {
-    let h = self / 3600
-    let m = (self % 3600) / 60
+    let h = self / 60
+    let m = self % 60
     return h > 0 ? String(format: "%1dh%02d mn", h, m) : String(format: "%1d mn", m)
 }
 }
+    extension String {
+    var convertStringTime: String {
+        let h = Int(self)! / 60
+        let m = Int(self)! % 60
+        return h > 0 ? String(format: "%1dh%02d mn", h, m) : String(format: "%1d mn", m)
+    }
+       
+        }
+        
+

@@ -10,79 +10,75 @@ import UIKit
 import CoreData
 
 class FavoriteTableViewController: UIViewController {
-
     
+    // MARK : Outlets
     @IBOutlet var tableView: UITableView!
-    
     @IBOutlet weak var deleteFavoriteBarButton: UIBarButtonItem!
     
+    // MARK: Propriety
     var favoritesRecipes = RecipeEntity.fetchAll()
     var favoriteSelected: [RecipeEntity?] = []
-     var recipeDetail: Recipe?
+    var recipeDetail: Recipe?
     
- override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "CustomRecipeViewCell", bundle: nil), forCellReuseIdentifier: "CustomRecipeViewCell")
-    favoritesRecipes = RecipeEntity.fetchAll()
-    tableView.reloadData()
-    print (favoritesRecipes)
+        favoritesRecipes = RecipeEntity.fetchAll()
+        tableView.reloadData()
+        print (favoritesRecipes)
     }
     override func viewWillAppear(_ animated: Bool) {
         favoritesRecipes = RecipeEntity.fetchAll()
         tableView.reloadData()
     }
-    
+    //    MARK: Navigation
     func updateFavoriteRecipeDetail(indexPath: IndexPath) {
         self.favoritesRecipes = [RecipeEntity.fetchAll()[indexPath.row]]
         self.performSegue(withIdentifier: "recipeDetail", sender: self)
     }
-
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if let detailsVC = segue.destination as? RecipeDetailViewController {
-        detailsVC.favoritesRecipes = favoritesRecipes
-        detailsVC.favorite = true
-        
-    }
-}
     
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let detailsVC = segue.destination as? RecipeDetailViewController {
+            detailsVC.favoritesRecipes = favoritesRecipes
+            detailsVC.favorite = true
+            
+        }
+    }
+    
+    // MARK: Actions
     @IBAction func deleteFavorites(_ sender: Any) {
-       AlertDelete(message: "Are You sure to delete all favorites ?" )
+        alertDelete(message: "Are You sure to delete all favorites ?" )
         tableView.reloadData()
     }
-    }
-
-extension FavoriteTableViewController: UITableViewDataSource, UITableViewDelegate{
-
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return favoritesRecipes.count
-        }
-        
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            guard let customCell = tableView.dequeueReusableCell(withIdentifier: "CustomRecipeViewCell", for: indexPath) as? CustomRecipeViewCell else { fatalError("Custom Cell can'nt be loaded")
-                
-            }
-            let resultRecipe = favoritesRecipes[indexPath.row]
-            customCell.favoritesRecipes = resultRecipe
-           
-            return customCell
-           
-            
 }
-
+// MARK : TableView
+extension FavoriteTableViewController: UITableViewDataSource, UITableViewDelegate{
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return favoritesRecipes.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let customCell = tableView.dequeueReusableCell(withIdentifier: "CustomRecipeViewCell", for: indexPath) as? CustomRecipeViewCell else { fatalError("Custom Cell can'nt be loaded")
+        }
+        let resultRecipe = favoritesRecipes[indexPath.row]
+        customCell.favoritesRecipes = resultRecipe
+        return customCell
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
         updateFavoriteRecipeDetail(indexPath: indexPath)
-}
+    }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             guard let recipe = favoritesRecipes[indexPath.row].label else {return}
             if RecipeEntity.recipeAlreadyExist(label: recipe) {
                 RecipeEntity.delete(label: recipe)
                 favoritesRecipes.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-            tableView.reloadData()}
-    }
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                tableView.reloadData()}
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -98,18 +94,19 @@ extension FavoriteTableViewController: UITableViewDataSource, UITableViewDelegat
         return favoritesRecipes.isEmpty ? 200: 0
     }
 }
+// MARK : Alert
 extension FavoriteTableViewController {
-        func AlertDelete(message: String) {
-            let alertVC = UIAlertController(title: "Warning !", message: message, preferredStyle: .alert)
-            alertVC.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
-                RecipeEntity.deleteAll()
-                self.favoritesRecipes.removeAll()
-               self.tableView.reloadData()
-            }))
-                
-            alertVC.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-            self.present(alertVC, animated: true, completion: nil)
-        }    }
-    
+    func alertDelete(message: String) {
+        let alertVC = UIAlertController(title: "Warning !", message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+            RecipeEntity.deleteAll()
+            self.favoritesRecipes.removeAll()
+            self.tableView.reloadData()
+        }))
+        
+        alertVC.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        self.present(alertVC, animated: true, completion: nil)
+    }    }
+
 
 

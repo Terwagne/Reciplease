@@ -11,6 +11,10 @@ import Alamofire
 
 protocol EdamamProtocol {
 
-    func request(url: URL, completionHandler: @escaping (DataResponse<Any>) -> Void)
+ func request(url: URL, completionHandler: @escaping (DataResponse<Any>) -> Void)
 }
+
+
+        
+
 

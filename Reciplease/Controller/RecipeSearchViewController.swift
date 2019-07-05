@@ -10,38 +10,38 @@ import UIKit
 
 class RecipeSearchViewController: UIViewController {
     
-    //    Outlets
-    
+    //  MARK:  Outlets
     
     @IBOutlet weak var ingredientsTextField: UITextField!
-    
     @IBOutlet weak var ingredientsTableView: UITableView!
-    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
     @IBOutlet weak var searchForRecipesButton: UIButton!
-  
-    @IBOutlet weak var LowFatSwitch: UISwitch!
-    var lowFat: Bool = false
+    
+    @IBOutlet weak var lowFatSwitch: UISwitch!
+    
     // Properties
     
     var ingredients: [String] = []
     let userDefaults = UserDefaults.standard
     let edamamService = EdamamService()
     var edamamRecipes: EdamamRecipes?
-    
+    var lowFat: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         ingredients = userDefaults.updateIngredients()
         ingredientsTableView.reloadData()
         toggleActivityIndicator(shown: false)
-        // Do any additional setup after loading the view.
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         toggleActivityIndicator(shown: false)
     }
- 
+    
+    override func viewDidAppear(_ animated: Bool) {
+         toggleActivityIndicator(shown: false)
+    }
+    //  MARK : Actions
     @IBAction func lowFatSwitchOn(_ sender: Any) {
         if ((sender as AnyObject).isOn == true){
             lowFat = true
@@ -50,13 +50,10 @@ class RecipeSearchViewController: UIViewController {
         }
     }
     
-    
     @IBAction func addButtonPressed(_ sender: Any) {
         guard let ingredientsText = ingredientsTextField.text else {return}
         if ingredientsText != "" {
-            
             let list = ingredientsTextField.text!.transformToArray
-            
             for ingredient in list {
                 ingredients.append(ingredient)
             }
@@ -65,16 +62,11 @@ class RecipeSearchViewController: UIViewController {
             ingredientsTextField.text = ""
             ingredients.sort()
             userDefaults.saveIngredients(listOfIngredients: ingredients)
-            
             ingredientsTableView.reloadData()
-            
-            
         } else {
             Alert(message: "Please indicate an ingredient")
         }
     }
-    
-    
     
     @IBAction func clearButtonPressed(_ sender: Any) {
         ingredients.removeAll()
@@ -92,31 +84,30 @@ class RecipeSearchViewController: UIViewController {
     
     func searchRecipes() {
         print("requestSearchForRecipes")
-       toggleActivityIndicator(shown: true)
+        toggleActivityIndicator(shown: true)
         if lowFat == false {
-        edamamService.searchRecipes(ingredients: ingredients) { (success, edamamRecipes) in
-            if success {
-                print("success")
-                guard let edamamRecipes = edamamRecipes else {return}
-                self.edamamRecipes = edamamRecipes
-                
-                self.performSegue(withIdentifier: "searchRecipesVC", sender: self)
-            }else{
-                self.Alert(message: "The search failed")
-            }
-        }
-        }else{
-        edamamService.searchRecipesWithLowFat(ingredients: ingredients) { (success, edamamRecipes) in
+            edamamService.searchRecipes(ingredients: ingredients) { (success, edamamRecipes) in
                 if success {
                     print("success")
                     guard let edamamRecipes = edamamRecipes else {return}
                     self.edamamRecipes = edamamRecipes
-                    
                     self.performSegue(withIdentifier: "searchRecipesVC", sender: self)
                 }else{
                     self.Alert(message: "The search failed")
                 }
-            }        }
+            }
+        }else{
+            edamamService.searchRecipesWithLowFat(ingredients: ingredients) { (success, edamamRecipes) in
+                if success {
+                    print("success")
+                    guard let edamamRecipes = edamamRecipes else {return}
+                    self.edamamRecipes = edamamRecipes
+                    self.performSegue(withIdentifier: "searchRecipesVC", sender: self)
+                }else{
+                    self.Alert(message: "The search failed")
+                }
+            }
+        }
     }
     //    MARK: - Animation
     func toggleActivityIndicator(shown: Bool) {
@@ -125,16 +116,11 @@ class RecipeSearchViewController: UIViewController {
     }
     
     // MARK: - Navigation
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "searchRecipesVC" {
             if let edamamRecipes = edamamRecipes {
                 if let successVC = segue.destination as? RecipeTableViewController {
                     successVC.edamanRecipes = edamamRecipes
-//                    successVC.calorie = false
-                   
-                    
-                    
                 }
             }
         }
@@ -182,8 +168,8 @@ extension RecipeSearchViewController {
     }
     
 }
-    extension String {
-        var transformToArray: [String] {
-            return self.components(separatedBy: .punctuationCharacters).joined().components(separatedBy: " ").filter { !$0.isEmpty }
-}
+extension String {
+    var transformToArray: [String] {
+        return self.components(separatedBy: .punctuationCharacters).joined().components(separatedBy: " ").filter { !$0.isEmpty }
+    }
 }

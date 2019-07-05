@@ -9,24 +9,23 @@
 import UIKit
 class CustomRecipeViewCell: UITableViewCell {
     
+    // MARK :    outlets
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeName: UILabel!
     @IBOutlet weak var recipeIngredients: UILabel!
     @IBOutlet weak var recipeYield: UILabel!
     @IBOutlet weak var recipeTime: UILabel!
-   
     @IBOutlet weak var calorieLabel: UILabel!
     
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-}
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
-
     
+    //    MARK: Propriety
     var recipe: Hit? {
         didSet {
             recipeName.text = recipe?.recipe.label
@@ -38,33 +37,25 @@ class CustomRecipeViewCell: UITableViewCell {
             if yield == 0 {
                 recipeYield.text = "NA"
             }else{
-            recipeYield.text = "\( yield)"
+                recipeYield.text = "\( yield)"
             }
+            
             guard let ingredients = recipe?.recipe.ingredients[0].text else {return}
             recipeIngredients.text = ingredients
-
+            
             guard let image = recipe?.recipe.image else {return}
-            
-            let url = URL(string: image)
-            
+            guard let url = URL(string: image) else {return}
             DispatchQueue.global().async {
-                let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+                let data = try? Data(contentsOf: url)
                 DispatchQueue.main.async {
                     self.recipeImage.image = UIImage(data: data! as Data)
                 }
             }
             guard let calories = recipe?.recipe.calories else {return}
             let caloriesInt = Int(calories)
-            calorieLabel.text = "\(caloriesInt)" +  " calories"
-            
+            calorieLabel.text = "\(caloriesInt)" + " calories"
         }
     }
-    
-    func defaultImage() {
-      recipeImage.backgroundColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
-      
-    }
-  
     
     var favoritesRecipes: RecipeEntity? {
         didSet {
@@ -72,25 +63,22 @@ class CustomRecipeViewCell: UITableViewCell {
             if favoritesRecipes!.time == "" {
                 recipeTime.text = "NA"
             }else{
-                recipeTime.text = (favoritesRecipes?.time)! + " mn"
+                recipeTime.text = (favoritesRecipes?.time?.convertStringTime)!
             }
             recipeYield.text = favoritesRecipes?.yield
             
             if let ingredients = favoritesRecipes?.ingredient?.allObjects as? [IngredientEntity] {
-
-                
                 recipeIngredients.text = ingredients.map({$0.text ?? ""}).joined(separator: ", ")
             }
             guard let image = favoritesRecipes?.image else {return}
-                   recipeImage.image = UIImage(data: image as Data)
-          
+            recipeImage.image = UIImage(data: image as Data)
+            
             guard let calories = favoritesRecipes?.calories else {return}
-             let caloriesInt = Int(calories)
-            calorieLabel.text = "\(caloriesInt)" +  " calories"
+            let caloriesInt = Int(calories)
+            calorieLabel.text = "\(caloriesInt)" + " calories"
         }
-        
-}
+    }
+    
 
 }
-
 
