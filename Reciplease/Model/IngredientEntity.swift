@@ -10,13 +10,14 @@ import Foundation
 import CoreData
 
 class IngredientEntity: NSManagedObject {
-
+    
     static func fetchAll(viewContext: NSManagedObjectContext = AppDelegate.viewContext) -> [IngredientEntity] {
         let request: NSFetchRequest<IngredientEntity> = IngredientEntity.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "text", ascending: true)]
         guard let ingredient = try? viewContext.fetch(request) else { return [] }
         return ingredient
     }
+    
     static func add(viewContext: NSManagedObjectContext = AppDelegate.viewContext,
                     recipe: RecipeEntity, ingredientEntity: [Ingredient]) {
         for index in 0...ingredientEntity.count - 1 {

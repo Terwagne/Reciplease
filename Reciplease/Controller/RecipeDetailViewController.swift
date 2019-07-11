@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class RecipeDetailViewController: UIViewController {
-    ///  MARK: Outlets
+    // MARK: Outlets
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeName: UILabel!
     @IBOutlet weak var recipeDetailIngredientTableView: UITableView!
@@ -19,15 +19,15 @@ class RecipeDetailViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
     @IBOutlet weak var calorieLabel: UILabel!
-
-    //    MARK : Propriety
+    
+    // MARK: Properties
     let edamamService = EdamamService()
     var edamanRecipes: EdamamRecipes?
     var ingredients = [String]()
     var recipeDetail: Recipe?
     var favoritesRecipes: [RecipeEntity] = RecipeEntity.fetchAll()
     var favorite: Bool = false
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if favorite == false {
@@ -39,6 +39,7 @@ class RecipeDetailViewController: UIViewController {
             recipeDetailIngredientTableView.reloadData()
         }
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if RecipeEntity.recipeAlreadyExist(label: recipeName.text!) {
@@ -47,8 +48,8 @@ class RecipeDetailViewController: UIViewController {
             favoriteButton.tintColor = .white
         }
     }
-
-    ///    MARK: actions
+    
+    // MARK: Actions
     @IBAction func favoriteButtonAction(_ sender: UIBarButtonItem) {
         print("add favorite button")
         if RecipeEntity.recipeAlreadyExist(label: recipeName.text!) {
@@ -60,10 +61,9 @@ class RecipeDetailViewController: UIViewController {
             RecipeEntity.add(recipe: recipeDetail)
             favoriteButton.tintColor = UIColor.green
             try? AppDelegate.viewContext.save()
-
         }
     }
-
+    
     @IBAction func getRecipeDirection(_ sender: UIButton) {
         print("getRecipeDirection")
         if favorite == false {
@@ -78,7 +78,7 @@ class RecipeDetailViewController: UIViewController {
             UIApplication.shared.open(url)
         }
     }
-
+    
     func displayRecipe() {
         guard let recipeDetail = recipeDetail else {return}
         recipeName.text = recipeDetail.label
@@ -97,10 +97,10 @@ class RecipeDetailViewController: UIViewController {
         let calories = recipeDetail.calories
         let caloriesInt = Int(calories)
         calorieLabel.text = "\(caloriesInt)" +  " calories"
-
+        
         let image = recipeDetail.image
         guard let url = URL(string: image) else {return}
-
+        
         DispatchQueue.global().async {
             let data = try? Data(contentsOf: url)
             DispatchQueue.main.async {
@@ -108,6 +108,7 @@ class RecipeDetailViewController: UIViewController {
             }
         }
     }
+    
     func displayFavoritesRecipes() {
         let name = favoritesRecipes[0].label
         recipeName.text = name
@@ -127,9 +128,10 @@ class RecipeDetailViewController: UIViewController {
         calorieLabel.text = "\(calorie)" +  " calories"
     }
 }
-// MARK: TableView
-extension RecipeDetailViewController: UITableViewDataSource {
 
+// MARK: TableViewDataSource & Delegate
+extension RecipeDetailViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if favorite == true {
             let recipeIngredients = IngredientLineEntity.fetchAll()
@@ -139,6 +141,7 @@ extension RecipeDetailViewController: UITableViewDataSource {
             return recipeIngredients.count
         }
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ingredientsDetailCell", for: indexPath)
         if favorite == true {

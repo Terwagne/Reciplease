@@ -15,7 +15,7 @@ class EdamamSessionFake: EdamamSession {
     init(fakeResponse: FakeResponse) {
         self.fakeResponse = fakeResponse
     }
-
+    
     override func request(url: URL, completionHandler: @escaping (DataResponse<Any>) -> Void) {
         let httpResponse = fakeResponse.response
         let data = fakeResponse.data
@@ -24,5 +24,5 @@ class EdamamSessionFake: EdamamSession {
                                                    response: httpResponse, data: data, error: error)
         let urlRequest = URLRequest(url: URL(string: "https://www.google.fr")!)
         completionHandler(DataResponse(request: urlRequest, response: httpResponse, data: data, result: result))
-}
+    }
 }

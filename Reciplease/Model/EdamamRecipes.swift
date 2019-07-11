@@ -13,12 +13,12 @@ struct EdamamRecipes: Decodable {
     let hits: [Hit]
 }
 
-// MARK: - Hit
+// MARK: Hit
 struct Hit: Decodable {
     let recipe: Recipe
 }
 
-// MARK: - Recipe
+// MARK: Recipe
 struct Recipe: Decodable {
     let uri: String
     let label: String
@@ -33,7 +33,7 @@ struct Recipe: Decodable {
     let dietLabels: [String]
 }
 
-// MARK: - Ingredient
+// MARK: Ingredient
 struct Ingredient: Decodable {
     let text: String
 }
