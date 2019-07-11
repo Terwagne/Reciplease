@@ -10,50 +10,53 @@ import Foundation
 import CoreData
 
 class RecipeEntity: NSManagedObject {
-       
+
     static func fetchAll(viewContext: NSManagedObjectContext = AppDelegate.viewContext) -> [RecipeEntity] {
         let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "label", ascending: true)]
         guard let favoritesRecipes = try? viewContext.fetch(request) else { return [] }
         return favoritesRecipes
     }
-    
+
     static func add(viewContext: NSManagedObjectContext = AppDelegate.viewContext, recipe: Recipe) {
         let favoriteRecipe = RecipeEntity(context: viewContext)
         favoriteRecipe.label = recipe.label
         favoriteRecipe.time =  String(recipe.totalTime)
         favoriteRecipe.yield = String(recipe.yield)
-        
+
         let imageUrlString = recipe.image
         guard let imageUrl = URL(string: imageUrlString) else {return}
-        let imageData = try! Data(contentsOf: imageUrl)
+        let imageData = try? Data(contentsOf: imageUrl)
         favoriteRecipe.image = imageData
-        
+
         favoriteRecipe.url = recipe.url
         favoriteRecipe.calories = recipe.calories
-        
+
         IngredientEntity.add(viewContext: viewContext, recipe: favoriteRecipe, ingredientEntity: recipe.ingredients)
-        
-        IngredientLineEntity.add(viewContext: viewContext, recipe: favoriteRecipe, ingredientLineEntity: recipe.ingredientLines)
-        
+
+        IngredientLineEntity.add(viewContext: viewContext, recipe: favoriteRecipe,
+                                 ingredientLineEntity: recipe.ingredientLines)
+
         try? viewContext.save()
     }
-    
-    static func fetchRecipe (label: String, viewContext: NSManagedObjectContext = AppDelegate.viewContext) -> [RecipeEntity] {
+
+    static func fetchRecipe (label: String,
+                             viewContext: NSManagedObjectContext = AppDelegate.viewContext) -> [RecipeEntity] {
         let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
         request.predicate = NSPredicate(format: "label = %@", label)
         guard let favoritesRecipes = try? viewContext.fetch(request) else {return []}
         return favoritesRecipes
     }
-    
-    static func recipeAlreadyExist(viewContext: NSManagedObjectContext = AppDelegate.viewContext, label: String) -> Bool {
+
+    static func recipeAlreadyExist(viewContext: NSManagedObjectContext = AppDelegate.viewContext,
+                                   label: String) -> Bool {
         let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
         request.predicate = NSPredicate(format: "label = %@", label)
         guard let recipeEntites = try? viewContext.fetch(request) else { return false }
         if recipeEntites.isEmpty { return false }
         return true
     }
-    
+
     static func delete(label: String, viewContext: NSManagedObjectContext = AppDelegate.viewContext) {
         let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
         request.predicate = NSPredicate(format: "label = %@", label)
@@ -62,12 +65,11 @@ class RecipeEntity: NSManagedObject {
         viewContext.delete(favoriteRecipe)
         try? viewContext.save()
     }
-    
+
     static func deleteAll(viewContext: NSManagedObjectContext = AppDelegate.viewContext) {
         let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "RecipeEntity")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
-        let _ = try? viewContext.execute(deleteRequest)
+        _ = try? viewContext.execute(deleteRequest)
         try? viewContext.save()
     }
-    
 }

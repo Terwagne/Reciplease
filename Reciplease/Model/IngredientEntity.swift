@@ -17,7 +17,8 @@ class IngredientEntity: NSManagedObject {
         guard let ingredient = try? viewContext.fetch(request) else { return [] }
         return ingredient
     }
-    static func add(viewContext: NSManagedObjectContext = AppDelegate.viewContext, recipe: RecipeEntity, ingredientEntity : [Ingredient]) {
+    static func add(viewContext: NSManagedObjectContext = AppDelegate.viewContext,
+                    recipe: RecipeEntity, ingredientEntity: [Ingredient]) {
         for index in 0...ingredientEntity.count - 1 {
             let ingredient = IngredientEntity(context: viewContext)
             ingredient.text = ingredientEntity[index].text

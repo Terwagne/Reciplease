@@ -9,22 +9,17 @@
 import Foundation
 
 extension Int {
-
-// Cooking time
-
+    // Cooking time
     var convertIntToTime: String {
-    let h = self / 60
-    let m = self % 60
-    return h > 0 ? String(format: "%1dh%02d mn", h, m) : String(format: "%1d mn", m)
-}
-}
-    extension String {
-    var convertStringTime: String {
-        let h = Int(self)! / 60
-        let m = Int(self)! % 60
-        return h > 0 ? String(format: "%1dh%02d mn", h, m) : String(format: "%1d mn", m)
+        let hrs = self / 60
+        let min = self % 60
+        return hrs > 0 ? String(format: "%1dh%02d mn", hrs, min) : String(format: "%1d mn", min)
     }
-       
-        }
-        
-
+}
+extension String {
+    var convertStringTime: String {
+        let hrs = Int(self)! / 60
+        let min = Int(self)! % 60
+        return hrs > 0 ? String(format: "%1dh%02d mn", hrs, min) : String(format: "%1d mn", min)
+    }
+}

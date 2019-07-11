@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class RecipeDetailViewController: UIViewController {
-    //   MARK: Outlets
+    ///  MARK: Outlets
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeName: UILabel!
     @IBOutlet weak var recipeDetailIngredientTableView: UITableView!
@@ -19,20 +19,20 @@ class RecipeDetailViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
     @IBOutlet weak var calorieLabel: UILabel!
-    
+
     //    MARK : Propriety
     let edamamService = EdamamService()
-    var edamanRecipes:EdamamRecipes?
+    var edamanRecipes: EdamamRecipes?
     var ingredients = [String]()
     var recipeDetail: Recipe?
     var favoritesRecipes: [RecipeEntity] = RecipeEntity.fetchAll()
-    var favorite:Bool = false
-    
+    var favorite: Bool = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
         if favorite == false {
             displayRecipe()
-        }else{
+        } else {
             print(favoritesRecipes)
             displayFavoritesRecipes()
             recipeDetailIngredientTableView.dataSource = self
@@ -47,23 +47,23 @@ class RecipeDetailViewController: UIViewController {
             favoriteButton.tintColor = .white
         }
     }
-    
-    //    MARK: Actions
+
+    ///    MARK: actions
     @IBAction func favoriteButtonAction(_ sender: UIBarButtonItem) {
         print("add favorite button")
-        if RecipeEntity.recipeAlreadyExist(label:recipeName.text!){
+        if RecipeEntity.recipeAlreadyExist(label: recipeName.text!) {
             RecipeEntity.delete(label: recipeName.text!)
             favoriteButton.tintColor = .white
-            let _ = navigationController?.popViewController(animated: true)
-        }else{
+            _ = navigationController?.popViewController(animated: true)
+        } else {
             guard let recipeDetail = recipeDetail else {return}
             RecipeEntity.add(recipe: recipeDetail)
             favoriteButton.tintColor = UIColor.green
             try? AppDelegate.viewContext.save()
-          
+
         }
     }
-    
+
     @IBAction func getRecipeDirection(_ sender: UIButton) {
         print("getRecipeDirection")
         if favorite == false {
@@ -72,35 +72,35 @@ class RecipeDetailViewController: UIViewController {
             print("source : \(urlSource)")
             guard let url = URL(string: urlSource) else {return}
             UIApplication.shared.open(url)
-        }else{
+        } else {
             guard let urlSource = favoritesRecipes[0].url else {return}
             guard let url = URL(string: urlSource) else {return}
             UIApplication.shared.open(url)
         }
     }
-    
+
     func displayRecipe() {
         guard let recipeDetail = recipeDetail else {return}
         recipeName.text = recipeDetail.label
         let minuteTime = recipeDetail.totalTime.convertIntToTime
         if minuteTime == "" {
             timeLabel.text = "NA"
-        }else{
+        } else {
             timeLabel.text = String("\(minuteTime)")
         }
         let yield = recipeDetail.yield
         if yield <= 0 {
             yieldLabel.text = "NA"
-        }else{
+        } else {
             yieldLabel.text = "\( yield)"
         }
         let calories = recipeDetail.calories
         let caloriesInt = Int(calories)
         calorieLabel.text = "\(caloriesInt)" +  " calories"
-        
+
         let image = recipeDetail.image
         guard let url = URL(string: image) else {return}
-        
+
         DispatchQueue.global().async {
             let data = try? Data(contentsOf: url)
             DispatchQueue.main.async {
@@ -129,12 +129,12 @@ class RecipeDetailViewController: UIViewController {
 }
 // MARK: TableView
 extension RecipeDetailViewController: UITableViewDataSource {
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if favorite == true {
             let recipeIngredients = IngredientLineEntity.fetchAll()
             return recipeIngredients.count
-        }else{
+        } else {
             guard let recipeIngredients = recipeDetail?.ingredientLines else {return 0}
             return recipeIngredients.count
         }
@@ -147,11 +147,10 @@ extension RecipeDetailViewController: UITableViewDataSource {
             guard let name = instructions.name else {return cell}
             cell.textLabel?.text = name
             return cell
-        }else{
+        } else {
             guard let recipeDetail = recipeDetail else { return UITableViewCell() }
             cell.textLabel?.text = "-" + recipeDetail.ingredientLines[indexPath.row]
             return cell
         }
     }
-    
 }

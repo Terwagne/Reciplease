@@ -14,7 +14,7 @@
         <scene sceneID="VrK-79-Inh">
             <objects>
                 <navigationController id="eJo-dG-Hmr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Search" image="search-1" id="iTF-CS-1U1"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="search" id="iTF-CS-1U1"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="x1v-WS-8RZ">
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -67,7 +67,7 @@
         <scene sceneID="CkK-Z1-w7O">
             <objects>
                 <navigationController id="6I8-mu-WfO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Favorite" image="star" id="XMF-Ml-Egz">
+                    <tabBarItem key="tabBarItem" title="Favorite" image="star " id="XMF-Ml-Egz">
                         <color key="badgeColor" red="0.29803921570000003" green="0.58823529409999997" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fNM-xd-gDQ">
@@ -461,7 +461,7 @@
                         <viewLayoutGuide key="safeArea" id="VW6-m6-i1g"/>
                     </view>
                     <navigationItem key="navigationItem" title="Reciplease" id="BXy-Ot-nSM">
-                        <barButtonItem key="rightBarButtonItem" image="star" id="4EW-kx-Fer">
+                        <barButtonItem key="rightBarButtonItem" image="star " id="4EW-kx-Fer">
                             <connections>
                                 <action selector="favoriteButtonAction:" destination="5A7-K3-lfd" id="CGN-mh-NER"/>
                             </connections>
@@ -509,10 +509,10 @@
         <image name="clock-circular-outline" width="8" height="8"/>
         <image name="delete" width="21" height="21"/>
         <image name="group" width="5" height="5"/>
-        <image name="search-1" width="8" height="8"/>
-        <image name="star" width="10" height="10"/>
+        <image name="search" width="21" height="21"/>
+        <image name="star " width="21" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="T8F-g0-GRq"/>
+        <segue reference="zpG-Uf-98o"/>
     </inferredMetricsTieBreakers>
 </document>

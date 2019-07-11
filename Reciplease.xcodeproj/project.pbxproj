@@ -24,11 +24,12 @@
 		CD4601FC22A57BC500860A70 /* EdamamRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4601FB22A57BC500860A70 /* EdamamRecipes.swift */; };
 		CD46020222A5816C00860A70 /* EdamamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46020122A5816C00860A70 /* EdamamService.swift */; };
 		CD46020822A5C34400860A70 /* EdamamSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46020722A5C34400860A70 /* EdamamSession.swift */; };
-		CD46020A22A5C36C00860A70 /* EdamanProtocole.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46020922A5C36C00860A70 /* EdamanProtocole.swift */; };
+		CD46020A22A5C36C00860A70 /* EdamanProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46020922A5C36C00860A70 /* EdamanProtocol.swift */; };
 		CD46020D22A66AEE00860A70 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46020C22A66AEE00860A70 /* UserDefault.swift */; };
 		CD46020F22A70F3A00860A70 /* CustomRecipeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46020E22A70F3A00860A70 /* CustomRecipeViewCell.swift */; };
 		CD7B8E7922C0C35A00525694 /* IngredientEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7B8E7822C0C35A00525694 /* IngredientEntity.swift */; };
 		CD98C54622C673B5002B35E0 /* CoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD98C54522C673B5002B35E0 /* CoreDataTests.swift */; };
+		CDA650DD22D6AB9F002D01F8 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = CDA650DC22D6AB9F002D01F8 /* .swiftlint.yml */; };
 		CDA801BA22CF4527004A6350 /* TimeTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA801B922CF4527004A6350 /* TimeTestCase.swift */; };
 		CDD0612622A3FD6400D474C5 /* FavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD0612522A3FD6400D474C5 /* FavoriteTableViewController.swift */; };
 		CDD0612822A3FDC300D474C5 /* RecipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD0612722A3FDC300D474C5 /* RecipeTableViewController.swift */; };
@@ -76,11 +77,12 @@
 		CD4601FB22A57BC500860A70 /* EdamamRecipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdamamRecipes.swift; sourceTree = "<group>"; };
 		CD46020122A5816C00860A70 /* EdamamService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdamamService.swift; sourceTree = "<group>"; };
 		CD46020722A5C34400860A70 /* EdamamSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EdamamSession.swift; sourceTree = "<group>"; };
-		CD46020922A5C36C00860A70 /* EdamanProtocole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdamanProtocole.swift; sourceTree = "<group>"; };
+		CD46020922A5C36C00860A70 /* EdamanProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdamanProtocol.swift; sourceTree = "<group>"; };
 		CD46020C22A66AEE00860A70 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		CD46020E22A70F3A00860A70 /* CustomRecipeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRecipeViewCell.swift; sourceTree = "<group>"; };
 		CD7B8E7822C0C35A00525694 /* IngredientEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientEntity.swift; sourceTree = "<group>"; };
 		CD98C54522C673B5002B35E0 /* CoreDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTests.swift; sourceTree = "<group>"; };
+		CDA650DC22D6AB9F002D01F8 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		CDA801B922CF4527004A6350 /* TimeTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTestCase.swift; sourceTree = "<group>"; };
 		CDD0612522A3FD6400D474C5 /* FavoriteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewController.swift; sourceTree = "<group>"; };
 		CDD0612722A3FDC300D474C5 /* RecipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 		CD126CC722A2C21C006293AC = {
 			isa = PBXGroup;
 			children = (
+				CDA650DC22D6AB9F002D01F8 /* .swiftlint.yml */,
 				CD126CD222A2C21C006293AC /* Reciplease */,
 				CD126CEA22A2C222006293AC /* RecipleaseTests */,
 				CD126CD122A2C21C006293AC /* Products */,
@@ -208,7 +211,7 @@
 				CD4601FB22A57BC500860A70 /* EdamamRecipes.swift */,
 				CD46020722A5C34400860A70 /* EdamamSession.swift */,
 				CD46020122A5816C00860A70 /* EdamamService.swift */,
-				CD46020922A5C36C00860A70 /* EdamanProtocole.swift */,
+				CD46020922A5C36C00860A70 /* EdamanProtocol.swift */,
 				CDDED1AA22B3F8B500B23F88 /* RecipeEntity.swift */,
 				CDDED1AF22B58C2F00B23F88 /* IngredientLineEntity.swift */,
 				CD7B8E7822C0C35A00525694 /* IngredientEntity.swift */,
@@ -275,6 +278,7 @@
 				CD126CCD22A2C21C006293AC /* Frameworks */,
 				CD126CCE22A2C21C006293AC /* Resources */,
 				93B9F456057C1AA586719F05 /* [CP] Embed Pods Frameworks */,
+				CDA650D922D60A00002D01F8 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -348,6 +352,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDA650DD22D6AB9F002D01F8 /* .swiftlint.yml in Resources */,
 				CD126CE122A2C222006293AC /* LaunchScreen.storyboard in Resources */,
 				CD126CDE22A2C222006293AC /* Assets.xcassets in Resources */,
 				CD4601FA22A57A5B00860A70 /* CustomRecipeViewCell.xib in Resources */,
@@ -445,6 +450,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RecipleaseTests/Pods-RecipleaseTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		CDA650D922D60A00002D01F8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -452,7 +474,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD46020A22A5C36C00860A70 /* EdamanProtocole.swift in Sources */,
+				CD46020A22A5C36C00860A70 /* EdamanProtocol.swift in Sources */,
 				CDD9E0B422B1464600E5EECC /* RecipeDetailViewController.swift in Sources */,
 				CDDED1B022B58C2F00B23F88 /* IngredientLineEntity.swift in Sources */,
 				CD46020822A5C34400860A70 /* EdamamSession.swift in Sources */,

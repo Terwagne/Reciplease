@@ -20,8 +20,6 @@ extension UserDefaults {
     }
     func saveIngredients(listOfIngredients: [String]) {
         UserDefaults.standard.set(listOfIngredients, forKey: Keys.listOfIngredients)
-        
-    }
-    
-}
 
+    }
+}

@@ -18,4 +18,3 @@ extension EdamamProtocol {
         return ""
     }
 }
-

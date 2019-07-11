@@ -9,47 +9,43 @@
 import UIKit
 
 class RecipeSearchViewController: UIViewController {
-    
-    //  MARK:  Outlets
-    
+    /// MARK: outlets
     @IBOutlet weak var ingredientsTextField: UITextField!
     @IBOutlet weak var ingredientsTableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var searchForRecipesButton: UIButton!
-    
     @IBOutlet weak var lowFatSwitch: UISwitch!
-    
-    // Properties
-    
+
+    /// MARK: properties
     var ingredients: [String] = []
     let userDefaults = UserDefaults.standard
     let edamamService = EdamamService()
     var edamamRecipes: EdamamRecipes?
     var lowFat: Bool = false
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         ingredients = userDefaults.updateIngredients()
         ingredientsTableView.reloadData()
         toggleActivityIndicator(shown: false)
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         toggleActivityIndicator(shown: false)
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
-         toggleActivityIndicator(shown: false)
+        toggleActivityIndicator(shown: false)
     }
     //  MARK : Actions
     @IBAction func lowFatSwitchOn(_ sender: Any) {
-        if ((sender as AnyObject).isOn == true){
+        if(sender as AnyObject).isOn == true {
             lowFat = true
-        }else{
+        } else {
             lowFat = false
         }
     }
-    
+
     @IBAction func addButtonPressed(_ sender: Any) {
         guard let ingredientsText = ingredientsTextField.text else {return}
         if ingredientsText != "" {
@@ -64,24 +60,24 @@ class RecipeSearchViewController: UIViewController {
             userDefaults.saveIngredients(listOfIngredients: ingredients)
             ingredientsTableView.reloadData()
         } else {
-            Alert(message: "Please indicate an ingredient")
+            alert(message: "Please indicate an ingredient")
         }
     }
-    
+
     @IBAction func clearButtonPressed(_ sender: Any) {
         ingredients.removeAll()
         userDefaults.saveIngredients(listOfIngredients: ingredients)
         ingredientsTableView.reloadData()
     }
-    
+
     @IBAction func searchButtonPressed(_ sender: Any) {
         if !ingredients.isEmpty {
             searchRecipes()
         } else {
-            Alert(message: "Please add ingredients")
+            alert(message: "Please add ingredients")
         }
     }
-    
+
     func searchRecipes() {
         print("requestSearchForRecipes")
         toggleActivityIndicator(shown: true)
@@ -92,30 +88,30 @@ class RecipeSearchViewController: UIViewController {
                     guard let edamamRecipes = edamamRecipes else {return}
                     self.edamamRecipes = edamamRecipes
                     self.performSegue(withIdentifier: "searchRecipesVC", sender: self)
-                }else{
-                    self.Alert(message: "The search failed")
+                } else {
+                    self.alert(message: "The search failed")
                 }
             }
-        }else{
+        } else {
             edamamService.searchRecipesWithLowFat(ingredients: ingredients) { (success, edamamRecipes) in
                 if success {
                     print("success")
                     guard let edamamRecipes = edamamRecipes else {return}
                     self.edamamRecipes = edamamRecipes
                     self.performSegue(withIdentifier: "searchRecipesVC", sender: self)
-                }else{
-                    self.Alert(message: "The search failed")
+                } else {
+                    self.alert(message: "The search failed")
                 }
             }
         }
     }
-    //    MARK: - Animation
+    ///MARK: animation
     func toggleActivityIndicator(shown: Bool) {
         searchForRecipesButton.isHidden = shown
         activityIndicator.isHidden = !shown
     }
-    
-    // MARK: - Navigation
+
+    /// MARK: navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "searchRecipesVC" {
             if let edamamRecipes = edamamRecipes {
@@ -132,23 +128,24 @@ extension RecipeSearchViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ingredients.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
         let ingredient = ingredients[indexPath.row]
         cell.textLabel?.text = "- \(ingredient)"
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,
+                   forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             ingredients.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
             tableView.reloadData()}
     }
 }
-extension RecipeSearchViewController : UITextFieldDelegate {
-    
+extension RecipeSearchViewController: UITextFieldDelegate {
+
     func dismissKeyboard() {
         ingredientsTextField.resignFirstResponder()
     }
@@ -161,15 +158,16 @@ extension RecipeSearchViewController : UITextFieldDelegate {
     }
 }
 extension RecipeSearchViewController {
-    func Alert(message: String) {
+    func alert(message: String) {
         let alertVC = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         self.present(alertVC, animated: true, completion: nil)
     }
-    
+
 }
 extension String {
     var transformToArray: [String] {
-        return self.components(separatedBy: .punctuationCharacters).joined().components(separatedBy: " ").filter { !$0.isEmpty }
+        return self.components(separatedBy: .punctuationCharacters).joined().components(separatedBy: " ")
+            .filter { !$0.isEmpty }
     }
 }

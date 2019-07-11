@@ -8,49 +8,32 @@
 
 import XCTest
 
-
 @testable import Reciplease
 
 class EdamamSessionTestsCase: XCTestCase {
-   
+
     func testUrlConstructRecipeSearch() {
         let ingredient =  "chicken+eggs+pasta"
-        let apiKey = valueForAPIKey(named:"app_key")
-        let apiId = valueForAPIKey(named:"app_id")
-        XCTAssertEqual("https://api.edamam.com/search?q=\(ingredient)&app_id=\(apiId)&app_key=\(apiKey)", "https://api.edamam.com/search?q=chicken+eggs+pasta&app_id=9ecb9b3e&app_key=5e1c36a08f90bafe013d7deaaba7f411")
+        let apiKey = valueForAPIKey(named: "app_key")
+        let apiId = valueForAPIKey(named: "app_id")
+        let url = "https://api.edamam.com/search?q=chicken+eggs+pasta&app_id=9ecb9b3e&app_key=5e1c36a08f90bafe013d7deaaba7f411"
+
+        XCTAssertEqual("https://api.edamam.com/search?q=\(ingredient)&app_id=\(apiId)&app_key=\(apiKey)", url)
     }
     func testUrlConstructRecipeSearchWithLowFat() {
         let ingredient =  "chicken+eggs+pasta"
-        let apiKey = valueForAPIKey(named:"app_key")
-        let apiId = valueForAPIKey(named:"app_id")
-        XCTAssertEqual("https://api.edamam.com/search?q=\(ingredient)&app_id=\(apiId)&app_key=\(apiKey)&diet=low-fat", "https://api.edamam.com/search?q=chicken+eggs+pasta&app_id=9ecb9b3e&app_key=5e1c36a08f90bafe013d7deaaba7f411&diet=low-fat")
+        let apiKey = valueForAPIKey(named: "app_key")
+        let apiId = valueForAPIKey(named: "app_id")
+        let url = "https://api.edamam.com/search?q=chicken+eggs+pasta&app_id=9ecb9b3e&app_key=5e1c36a08f90bafe013d7deaaba7f411&diet=low-fat"
+        XCTAssertEqual("https://api.edamam.com/search?q=\(ingredient)&app_id=\(apiId)&app_key=\(apiKey)&diet=low-fat", url)
     }
-        
-        func testSearchRecipesShouldPostFailedCallback () {
-            
-            let fakeResponse = FakeResponse(response: nil, data: nil, error: FakeResponseData.networkError)
-            let edamanSessionFake = EdamamSessionFake(fakeResponse: fakeResponse)
-            let edamamService = EdamamService(edamamSession: edamanSessionFake)
-            // When
-            let expectation = XCTestExpectation(description: "Wait for queue change ")
-            edamamService.searchRecipes(ingredients: ["chicken+eggs+pasta"]){ (success, edamamRecipes) in
-                
-                //Then
-                XCTAssertFalse(success)
-                XCTAssertNil(edamamRecipes)
-                expectation.fulfill()
-            }
-            wait(for: [expectation], timeout: 0.01)
-        }
-    
-    func testSearchRecipesShouldPostFailedcallbackIfNoData () {// NoData
-        // given
-        let fakeResponse = FakeResponse(response: nil, data: FakeResponseData.incorrectData, error: nil)// CallbackIfError
-        let edamamSessionFake = EdamamSessionFake(fakeResponse: fakeResponse)
-        let edamamService = EdamamService(edamamSession: edamamSessionFake)
+    func testSearchRecipesShouldPostFailedCallback () {
+        let fakeResponse = FakeResponse(response: nil, data: nil, error: FakeResponseData.networkError)
+        let edamanSessionFake = EdamamSessionFake(fakeResponse: fakeResponse)
+        let edamamService = EdamamService(edamamSession: edamanSessionFake)
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change ")
-       edamamService.searchRecipes(ingredients: ["chicken+eggs+pasta"]){ (success, edamamRecipes) in
+        edamamService.searchRecipes(ingredients: ["chicken+eggs+pasta"]) {(success, edamamRecipes) in
             //Then
             XCTAssertFalse(success)
             XCTAssertNil(edamamRecipes)
@@ -59,29 +42,46 @@ class EdamamSessionTestsCase: XCTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
 
-func testSearchRecipesShouldPostFailedcallbackIfIncorrectResponse() { // IfIncorrectResponse
-    //        // given
-    let fakeResponse = FakeResponse(response: FakeResponseData.responseKO, data: FakeResponseData.correctData , error: nil)// CallbackIfError
-    let edamamSessionFake = EdamamSessionFake(fakeResponse: fakeResponse)
-    let edamamService = EdamamService(edamamSession: edamamSessionFake)
-    // When
-    let expectation = XCTestExpectation(description: "Wait for queue change ")
-    edamamService.searchRecipes(ingredients:["chicken+eggs+pasta"]){ (success, edamamRecipes) in
-        //            //Then
-        XCTAssertFalse(success)
-        XCTAssertNil(edamamRecipes)
-        expectation.fulfill()
-    }
-    wait(for: [expectation], timeout: 0.01)
-}
-    func testSearchRecipesShouldPostSuccessCallbackIfResponseCorrectAndNildata() { //
+    func testSearchRecipesShouldPostFailedcallbackIfNoData () {// NoData
         // given
-        let fakeResponse = FakeResponse(response: FakeResponseData.responseOK, data: nil , error: nil)
+        let fakeResponse = FakeResponse(response: nil, data: FakeResponseData.incorrectData, error: nil)
         let edamamSessionFake = EdamamSessionFake(fakeResponse: fakeResponse)
         let edamamService = EdamamService(edamamSession: edamamSessionFake)
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change ")
-         edamamService.searchRecipes(ingredients: ["chicken+eggs+pasta"]){ (success, edamamRecipes) in
+        edamamService.searchRecipes(ingredients: ["chicken+eggs+pasta"]) {(success, edamamRecipes) in
+            //Then
+            XCTAssertFalse(success)
+            XCTAssertNil(edamamRecipes)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.01)
+    }
+
+    func testSearchRecipesShouldPostFailedcallbackIfIncorrectResponse() { // IfIncorrectResponse
+        //        // given
+        let fakeResponse = FakeResponse(response: FakeResponseData.responseKO,
+                                        data: FakeResponseData.correctData, error: nil)// CallbackIfError
+        let edamamSessionFake = EdamamSessionFake(fakeResponse: fakeResponse)
+        let edamamService = EdamamService(edamamSession: edamamSessionFake)
+        // When
+        let expectation = XCTestExpectation(description: "Wait for queue change ")
+        edamamService.searchRecipes(ingredients: ["chicken+eggs+pasta"]) {(success, edamamRecipes) in
+            //            //Then
+            XCTAssertFalse(success)
+            XCTAssertNil(edamamRecipes)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.01)
+    }
+    func testSearchRecipesShouldPostSuccessCallbackIfResponseCorrectAndNildata() { //
+        // given
+        let fakeResponse = FakeResponse(response: FakeResponseData.responseOK, data: nil, error: nil)
+        let edamamSessionFake = EdamamSessionFake(fakeResponse: fakeResponse)
+        let edamamService = EdamamService(edamamSession: edamamSessionFake)
+        // When
+        let expectation = XCTestExpectation(description: "Wait for queue change ")
+        edamamService.searchRecipes(ingredients: ["chicken+eggs+pasta"]) {(success, edamamRecipes) in
             //Then
             XCTAssertFalse(success)
             XCTAssertNil(edamamRecipes)
@@ -92,12 +92,12 @@ func testSearchRecipesShouldPostFailedcallbackIfIncorrectResponse() { // IfIncor
 
     func testSearchRecipesShouldPostCallbackIfInCorrectData() {
         // given
-        let fakeResponse = FakeResponse(response: FakeResponseData.responseOK, data: FakeResponseData.incorrectData, error: nil)
+        let fakeResponse = FakeResponse(response: FakeResponseData.responseOK,
+                                        data: FakeResponseData.incorrectData, error: nil)
         let edamamSessionFake = EdamamSessionFake(fakeResponse: fakeResponse)
         let edamamService = EdamamService(edamamSession: edamamSessionFake)
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change ")
-        
         edamamService.searchRecipes(ingredients: ["chicken+eggs+pasta"]) { success, edamamRecipes in
             XCTAssertFalse(success)
             XCTAssertNil(edamamRecipes)
@@ -106,12 +106,13 @@ func testSearchRecipesShouldPostFailedcallbackIfIncorrectResponse() { // IfIncor
         wait(for: [expectation], timeout: 0.01)
     }
     func testSearchRecipesShouldPostFailedcallbackIfNoErrorAndCorrectData () {
-        let fakeResponse = FakeResponse(response: FakeResponseData.responseOK, data: FakeResponseData.correctData , error: nil)
+        let fakeResponse = FakeResponse(response: FakeResponseData.responseOK,
+                                        data: FakeResponseData.correctData, error: nil)
         let edamamSessionFake = EdamamSessionFake(fakeResponse: fakeResponse)
         let edamamService = EdamamService(edamamSession: edamamSessionFake)
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change ")
-         edamamService.searchRecipes(ingredients: ["chicken+eggs+pasta"]) { (success, edamamRecipes) in
+        edamamService.searchRecipes(ingredients: ["chicken+eggs+pasta"]) { (success, edamamRecipes) in
             //Then
             XCTAssertTrue(success)
             XCTAssertNotNil(edamamRecipes)
@@ -120,14 +121,12 @@ func testSearchRecipesShouldPostFailedcallbackIfIncorrectResponse() { // IfIncor
         wait(for: [expectation], timeout: 0.01)
     }
     func testSearchRecipesWithLowFatShouldPostFailedCallbackIfnoData () {
-        
         let fakeResponse = FakeResponse(response: nil, data: FakeResponseData.incorrectData, error: nil)
         let edamanSessionFake = EdamamSessionFake(fakeResponse: fakeResponse)
         let edamamService = EdamamService(edamamSession: edamanSessionFake)
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change ")
-        edamamService.searchRecipesWithLowFat(ingredients: ["chicken+eggs+pasta"]){ (success, edamamRecipes) in
-            
+        edamamService.searchRecipesWithLowFat(ingredients: ["chicken+eggs+pasta"]) {(success, edamamRecipes) in
             //Then
             XCTAssertFalse(success)
             XCTAssertNil(edamamRecipes)
@@ -135,15 +134,16 @@ func testSearchRecipesShouldPostFailedcallbackIfIncorrectResponse() { // IfIncor
         }
         wait(for: [expectation], timeout: 0.01)
     }
-    
+
     func testSearchRecipesWithLowFatShouldPostFailedcallbackIfIncorrectResponse() {
         // given
-        let fakeResponse = FakeResponse(response: FakeResponseData.responseKO, data: FakeResponseData.correctData, error: nil)
+        let fakeResponse = FakeResponse(response: FakeResponseData.responseKO,
+                                        data: FakeResponseData.correctData, error: nil)
         let edamamSessionFake = EdamamSessionFake(fakeResponse: fakeResponse)
         let edamamService = EdamamService(edamamSession: edamamSessionFake)
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change ")
-        edamamService.searchRecipesWithLowFat(ingredients: ["chicken+eggs+pasta"]){ (success, edamamRecipes) in
+        edamamService.searchRecipesWithLowFat(ingredients: ["chicken+eggs+pasta"]) {(success, edamamRecipes) in
             //Then
             XCTAssertFalse(success)
             XCTAssertNil(edamamRecipes)
@@ -151,15 +151,15 @@ func testSearchRecipesShouldPostFailedcallbackIfIncorrectResponse() { // IfIncor
         }
         wait(for: [expectation], timeout: 0.01)
     }
-    
+
     func testSearchRecipesWithLowFatShouldPostFailedcallbackIfresponseCorrectAndNildata() {
-             // given
-        let fakeResponse = FakeResponse(response: FakeResponseData.responseOK, data: nil , error: nil)
+        // given
+        let fakeResponse = FakeResponse(response: FakeResponseData.responseOK, data: nil, error: nil)
         let edamamSessionFake = EdamamSessionFake(fakeResponse: fakeResponse)
         let edamamService = EdamamService(edamamSession: edamamSessionFake)
         // When
-        let expectation = XCTestExpectation(description: "Wait for queue change ")
-        edamamService.searchRecipesWithLowFat(ingredients:["chicken+eggs+pasta"]){ (success, edamamRecipes) in
+        let expectation = XCTestExpectation(description: "Wait for queue change")
+        edamamService.searchRecipesWithLowFat(ingredients: ["chicken+eggs+pasta"]) {(success, edamamRecipes) in
             //Then
             XCTAssertFalse(success)
             XCTAssertNil(edamamRecipes)
@@ -169,12 +169,13 @@ func testSearchRecipesShouldPostFailedcallbackIfIncorrectResponse() { // IfIncor
     }
     func testSearchRecipesWithLowFatShouldPostSuccessCallbackIfIncorrectData() {
         // given
-        let fakeResponse = FakeResponse(response: FakeResponseData.responseOK, data: FakeResponseData.incorrectData , error: nil)
+        let fakeResponse = FakeResponse(response: FakeResponseData.responseOK,
+                                        data: FakeResponseData.incorrectData, error: nil)
         let edamamSessionFake = EdamamSessionFake(fakeResponse: fakeResponse)
         let edamamService = EdamamService(edamamSession: edamamSessionFake)
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change ")
-        edamamService.searchRecipesWithLowFat(ingredients: ["chicken+eggs+pasta"]){ (success, edamamRecipes) in
+        edamamService.searchRecipesWithLowFat(ingredients: ["chicken+eggs+pasta"]) {(success, edamamRecipes) in
             //Then
             XCTAssertFalse(success)
             XCTAssertNil(edamamRecipes)
@@ -182,15 +183,15 @@ func testSearchRecipesShouldPostFailedcallbackIfIncorrectResponse() { // IfIncor
         }
         wait(for: [expectation], timeout: 0.01)
     }
-    
+
     func testSearchRecipesWithLowFatShouldPostSuccessCallbackIfNoErrorAndCorrectData() {
         // given
-        let fakeResponse = FakeResponse(response: FakeResponseData.responseOK, data: FakeResponseData.correctData, error: nil)
+        let fakeResponse = FakeResponse(response: FakeResponseData.responseOK,
+                                        data: FakeResponseData.correctData, error: nil)
         let edamamSessionFake = EdamamSessionFake(fakeResponse: fakeResponse)
         let edamamService = EdamamService(edamamSession: edamamSessionFake)
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change ")
-        
         edamamService.searchRecipesWithLowFat(ingredients: ["chicken+eggs+pasta"]) { success, edamamRecipes in
             XCTAssertTrue(success)
             XCTAssertNotNil(edamamRecipes)
@@ -198,8 +199,4 @@ func testSearchRecipesShouldPostFailedcallbackIfIncorrectResponse() { // IfIncor
         }
         wait(for: [expectation], timeout: 0.01)
     }
-//
-    }
-    
-    
-
+}
